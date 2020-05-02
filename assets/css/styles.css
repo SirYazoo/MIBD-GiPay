@@ -1,0 +1,22 @@
+.col-md-6 {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.col {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.img-fluid {
+  text-align: center;
+  max-width: 100%;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-bottom: auto;
+}
+
