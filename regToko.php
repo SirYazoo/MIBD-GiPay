@@ -1,3 +1,4 @@
+<?php include "server.php" ?>
 <!DOCTYPE html>
 <html>
 
@@ -34,38 +35,38 @@
         </div>
     </div>
     <div class="row register-form"><div class="col-md-8 offset-md-2" style="margin-top: -75px;">
-    <form class="custom-form" style="opacity: 1;">
+    <form class="custom-form" style="opacity: 1;" action="regToko.php" method="POST">
         <h1>Pemilik Toko</h1>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Username</label></div>
-            <div class="col-sm-6 input-column"><input class="form-control" type="text" required/></div>
+            <div class="col-sm-6 input-column"><input name="username" class="form-control" type="text" required/></div>
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="password-input-field">Password</label></div>
-            <div class="col-sm-6 input-column"><input type="password" required class="form-control" /></div>
+            <div class="col-sm-6 input-column"><input name="password" type="password" required class="form-control" /></div>
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="namaLengkap-input-field">Nama Lengkap</label></div>
-            <div class="col-sm-6 input-column"><input type="text" required class="form-control" /></div>
+            <div class="col-sm-6 input-column"><input name="nama" type="text" required class="form-control" /></div>
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="namaToko-input-field">Nama Toko</label></div>
-            <div class="col-sm-6 input-column"><input class="form-control" type="text" required /></div>
+            <div class="col-sm-6 input-column"><input name="namaToko" class="form-control" type="text" required /></div>
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="alamatToko-input-field">Alamat Toko</label></div>
-            <div class="col-sm-6 input-column"><input class="form-control" type="text" required /></div>
+            <div class="col-sm-6 input-column"><input name="alamatToko" class="form-control" type="text" required /></div>
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="noHP-input-field">No HP</label></div>
-            <div class="col-sm-6 input-column"><input class="form-control" type="tel" required/></div>
+            <div class="col-sm-6 input-column"><input name="noHp" class="form-control" type="tel" required/></div>
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Email</label></div>
-            <div class="col-sm-6 input-column"><input class="form-control" type="email" required /></div>
+            <div class="col-sm-6 input-column"><input name="email" class="form-control" type="email" required /></div>
         </div>
         <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3" /><label class="form-check-label" for="formCheck-3">I&#39;ve read and accept the terms and conditions</label></div>
-        <button class="btn btn-light submit-button" type="submit">Register</button></form>
+        <button class="btn btn-light submit-button" type="submit" name="reg_toko">Register</button></form>
 </div></div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
