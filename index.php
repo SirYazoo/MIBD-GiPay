@@ -24,11 +24,11 @@
                 <div class="col-md-6" style="background-color: #eef4f7;">
                     <div class="login-card"><img class="profile-img-card" src="assets/img/Logo.png" style="height: 115px;width: 100px;">
                         <p class="profile-name-card"> </p>
-                        <form class="form-signin" action="profPub.html"><span class="reauth-email"> </span><input name="username" class="form-control" type="text" id="inputUsername" required="" placeholder="Username" autofocus=""><input name="password" class="form-control" type="password" id="inputPassword" required="" placeholder="Password">
+                        <form class="form-signin" method="POST"><span class="reauth-email"> </span><input name="username" class="form-control" type="text" id="inputUsername" required="" placeholder="Username" autofocus=""><input name="password" class="form-control" type="password" id="inputPassword" required="" placeholder="Password">
                             <div
                                 class="checkbox">
                                 <div class="form-check" style="margin-right: 143px;"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Remember me</label></div>
-                    </div><button name="login" class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Sign in</button></form><a class="sign-up" href="signup.html">Create your account here</a></div>
+                    </div><button name="login_user" class="btn btn-primary btn-block btn-lg btn-signin" type="submit">Sign in</button></form><a class="sign-up" href="signup.html">Create your account here</a></div>
             </div>
         </div>
     </div>

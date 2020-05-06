@@ -3,26 +3,28 @@
 
 $db = new MySQLDB('localhost', 'root', '', 'gipay');
 
-if(isset($_POST['login'])){
+if(isset($_POST['login_user'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $query="SELECT * FROM pemiliktoko WHERE username=";
+    $query = "SELECT * FROM pemiliktoko WHERE username=";
 
     if(isset($username) && $username!=""){
-        $username = $this->db->escapeString($username);
-        $query.= "'". $username ."' AND ";
+        $username = $db->escapeString($username);
+        $query .= "'".$username."' AND ";
     }
     if(isset($pass) && $pass!=""){
-        $password = $this->db->escapeString($password);
-        $query.="password='". $password ."'";
+        $password = $db->escapeString($password);
+        $query .= "password='".$password."'";
     }
 
     $res = $db->executeSelectQuery($query);
 
     if(count($res) == 0){
-        $query= "SELECT * FROM penggunapublik WHERE username='". $username ."' AND password='". $password ."'";
-        $res = $db->executeSelectQuery($query);
-        if(count($res) != 0){
+        $query2 = "SELECT * FROM penggunapublik WHERE username=";
+        $query2 .= "'".$username."' AND ";
+        $query2 .= "password='".$password."'";
+        $res2 = $db->executeSelectQuery($query2);
+        if(count($res2) != 0){
             session_start();
                 $_SESSION['username'] = $username;
             session_write_close();
@@ -30,9 +32,10 @@ if(isset($_POST['login'])){
         }
         else{
             echo "<script type='text/javascript'>alert('Wrong Username or Password');</script>";
+            header('Location: index.php');
         }
     }
-    else{
+    else if(count($res) != 0){
         session_start();
             $_SESSION['username'] = $username;
         session_write_close();
