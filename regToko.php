@@ -1,4 +1,4 @@
-<?php include "server.php" ?>
+<?php include "server.php";?>
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +25,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><a href="index.html" class="btn btn-primary" role="button">Sign In</a></div>
+            </div><a href="index.php" class="btn btn-primary" role="button">Sign In</a></div>
     </nav>
     <div>
         <div class="container">
