@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="margin-top: 150px;">
-                    <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 330px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
+                    <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 310px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                         <div><img class="rounded-circle" src="assets/img/Orang.png" width="85px" height="85px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
                         <div style="height: 80px;">
                             <h4><?php echo $_SESSION['nama']; ?></h4>
