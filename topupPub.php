@@ -47,7 +47,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="profPub.php" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.php" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.html" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
+                </ul><a href="profPub.php" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.php" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.php" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
                     style="color: rgb(0,0,0);width: 160px;">History Payment</a><a href="histopPub.html" style="color: rgb(0,0,0);">History TopUp</a></div>
         </div>
     </nav>

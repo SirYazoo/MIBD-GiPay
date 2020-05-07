@@ -1,3 +1,12 @@
+<?php 
+	session_start(); 
+	if (isset($_GET['logout'])) {
+        session_unset();
+        session_destroy();
+		header("Location: index.php");
+	}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -29,7 +38,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, dioantares" readonly="" style="width: 205px;font-size: 18px;"><a href="index.php" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="index.php" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -38,7 +47,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="profPub.html" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.html" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.html" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
+                </ul><a href="profPub.php" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.php" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.php" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
                     style="color: rgb(0,0,0);width: 160px;">History Payment</a><a href="histopPub.html" style="color: rgb(0,0,0);">History TopUp</a></div>
         </div>
     </nav>

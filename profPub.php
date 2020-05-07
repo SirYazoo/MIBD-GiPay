@@ -56,13 +56,12 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="margin-top: 150px;">
-                    <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 330px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
-                        <div style="height: 50px;background-image: url(&quot;assets/img/bg-pattern.png&quot;);background-color: rgba(54,162,177,0);opacity: 0;"></div>
+                    <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 300px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                         <div><img class="rounded-circle" src="assets/img/Orang.png" width="85px" height="85px" style="background-color: rgb(255,255,255);padding: 2px;"></div>
                         <div style="height: 80px;">
                             <h4><?php echo $_SESSION['nama']; ?></h4>
                             <p style="font-size: 12px;margin: 25px;">Profile Description</p>
-                        </div><input class="form-control-plaintext" type="text" style="text-align:center;" value="Saldo : Rp<?php echo $_SESSION['saldo']; ?>" readonly=""><input class="form-control-plaintext" type="text" value="<?php echo $_SESSION['noHp']; ?>" readonly=""><input class="form-control-plaintext" type="text" value="<?php echo $_SESSION['email']; ?>"
+                        </div><input class="form-control-plaintext" type="text" style="text-align:center;" value="Saldo : Rp<?php echo $_SESSION['saldo']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="<?php echo $_SESSION['noHp']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="<?php echo $_SESSION['email']; ?>"
                             readonly=""></div>
                 </div>
                 <div class="col-md-4"></div>
