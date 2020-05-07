@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2020 at 10:47 AM
+-- Generation Time: May 07, 2020 at 01:14 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -31,6 +31,19 @@ CREATE TABLE `admin` (
   `idAdmin` int(11) NOT NULL,
   `username` varchar(15) NOT NULL,
   `password` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `historytopup`
+--
+
+CREATE TABLE `historytopup` (
+  `idTopup` int(11) NOT NULL,
+  `jumlah` float NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -98,6 +111,13 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `historytopup`
+--
+ALTER TABLE `historytopup`
+  ADD PRIMARY KEY (`idTopup`),
+  ADD KEY `FK_idUserTop` (`idUser`);
+
+--
 -- Indexes for table `pemiliktoko`
 --
 ALTER TABLE `pemiliktoko`
@@ -128,6 +148,12 @@ ALTER TABLE `admin`
   MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `historytopup`
+--
+ALTER TABLE `historytopup`
+  MODIFY `idTopup` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `penggunapublik`
 --
 ALTER TABLE `penggunapublik`
@@ -138,10 +164,16 @@ ALTER TABLE `penggunapublik`
 --
 
 --
+-- Constraints for table `historytopup`
+--
+ALTER TABLE `historytopup`
+  ADD CONSTRAINT `FK_idUserTop` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `verifikasi`
 --
 ALTER TABLE `verifikasi`
-  ADD CONSTRAINT `FK_idUser` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_idUserVer` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
