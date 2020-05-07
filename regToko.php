@@ -65,7 +65,6 @@
             <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Email</label></div>
             <div class="col-sm-6 input-column"><input name="email" class="form-control" type="email" required /></div>
         </div>
-        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3" /><label class="form-check-label" for="formCheck-3">I&#39;ve read and accept the terms and conditions</label></div>
         <button class="btn btn-light submit-button" type="submit" name="reg_toko">Register</button></form>
 </div></div>
     <script src="assets/js/jquery.min.js"></script>

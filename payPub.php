@@ -54,12 +54,13 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 150px;">
+            <form class="form-payPub" method="POST">
             <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 370px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
-                <div style="height: 50px;background-image: url(&quot;assets/img/bg-pattern.png&quot;);background-color: rgba(54,162,177,0);opacity: 0;"></div>
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;"></div><input type="text" placeholder="Id merchant" style="width: 200px;margin: 5px;" /><input type="text" placeholder="Jumlah pembayaran" style="width: 200px;margin: 30px;" /><input type="text" placeholder="Password" style="width: 200px;" />
                 <button
                     class="btn btn-primary" type="button" style="margin: 25px;">Pay</button>
             </div>
+            </form>
         </div>
         <div class="col-md-4"></div>
     </div>

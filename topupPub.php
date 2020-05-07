@@ -55,10 +55,11 @@
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 150px;">
             <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 370px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
-                <div style="height: 50px;background-image: url(&quot;assets/img/bg-pattern.png&quot;);background-color: rgba(54,162,177,0);opacity: 0;"></div>
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;"></div>
-                <div style="height: 80px;"><input class="form-control-plaintext" type="text" value="777<?php echo $_SESSION['noHp']; ?>" readonly="" style="padding: 30px;"><input type="text" placeholder="Masukan jumlah saldo" /></div><button class="btn btn-primary" type="button" style="margin-top: 80px;">Top Up</button></div>
-        </div>
+                <form class="form-topUpPub" method="POST">
+                    <div style="height: 80px;"><input class="form-control-plaintext" type="text" style="text-align:center;" value="777<?php echo $_SESSION['noHp']; ?>" readonly="" style="padding: 30px;"><input type="text" placeholder="Masukan jumlah saldo" /></div><button class="btn btn-primary" type="button" style="margin-top: 80px;">Top Up</button></div>
+                </form>
+            </div>
         <div class="col-md-4"></div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
