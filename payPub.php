@@ -1,5 +1,6 @@
 <?php 
-	session_start(); 
+    session_start();
+    include "server.php";
 	if (isset($_GET['logout'])) {
         session_unset();
         session_destroy();
@@ -56,7 +57,7 @@
         <div class="col-md-4" style="margin-top: 150px;">
             <form class="form-payPub" method="POST">
             <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 350px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
-                <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div><input type="text" placeholder="Id merchant" style="width: 200px;margin: 5px;" /><input type="text" placeholder="Jumlah pembayaran" style="width: 200px;margin: 30px;" /><input type="text" placeholder="Password" style="width: 200px;" />
+                <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div><input name="idToko" type="text" placeholder="Id merchant" style="width: 200px;margin: 5px;" /><input name="jumlah" type="text" placeholder="Jumlah pembayaran" style="width: 200px;margin: 30px;" /><input name="password" type="password" placeholder="Password" style="width: 200px;" />
                 <button
                     class="btn btn-primary" data-toggle="modal" data-target="#myModal" type="button" style="margin: 25px;">Pay</button>
             </div>
@@ -72,16 +73,16 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                   </div>
                   <div class="modal-body">
-                    <pre>Nama Toko          : </pre>
-                    <pre>Alamat Toko        : </pre>
-                    <pre>Tanggal            : </pre>
-                    <pre>Waktu              : </pre>
-                    <pre>Jumlah Pembayaran  : </pre>
+                    <pre>Nama Toko          : <?php echo $_SESSION['namaToko'] ?></pre>
+                    <pre>Alamat Toko        : <?php echo $_SESSION['alamatToko'] ?></pre>
+                    <pre>Tanggal            : <?php echo $_SESSION['tanggal'] ?></pre>
+                    <pre>Waktu              : <?php echo $_SESSION['waktu'] ?></pre>
+                    <pre>Jumlah Pembayaran  : <?php echo $_SESSION['jumlah'] ?></pre>
                   </div>
                   <div class="modal-footer">
-                  <form class="form-confirmPay" action="" method="POST">
-                    <button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-default">Pay</button>
+                  <form class="form-confirmPay" action="payPub.php" method="POST">
+                    <button name="cancel_pay" type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button name="konfir_pay" type="submit" class="btn btn-default">Pay</button>
                   </form>
                   </div>
                 </div>                

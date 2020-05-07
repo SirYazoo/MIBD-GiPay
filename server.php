@@ -35,7 +35,7 @@ if(isset($_POST['login_user'])){
             header('Location: profPub.php');
         }
         else{
-            echo "<script type='text/javascript'>alert('Wrong Username or Password');window.location.href='index.php';</script>";
+            echo "<script type='text/javascript'>alert('Username atau Password salah');window.location.href='index.php';</script>";
         }
     }
     else if(count($res) != 0){
@@ -117,5 +117,60 @@ function getTopup($uname){
         $query_result = $db->executeSelectQuery($query2);
     }
     return $query_result;
+}
+
+if(isset($_POST['pay'])){
+    if(empty($_POST['idToko']) || empty($_POST['jumlah']) || empty($_POST['password'])){
+        echo "<script type='text/javascript'>alert('Harap isi form dengan lengkap');window.location.href='payPub.php';</script>";
+    }
+    else{
+        $password = $_POST['password'];
+        $query = "SELECT * FROM penggunapublik WHERE password=";
+        $query .= "'".$password."'";
+        $query_result = $db->executeSelectQuery($query);
+        if(count($query_result) != 0){
+            $idToko = $_POST['idToko'];
+            $query = "SELECT namaToko, alamatToko FROM pemiliktoko WHERE idUser=$idToko";
+            $res = $db->executeSelectQuery($query);
+            $_SESSION['idToko'] = $idToko;
+            $_SESSION['namaToko'] = $res[0][0];
+            $_SESSION['alamatToko'] = $res[0][1];
+            $_SESSION['tanggal'] = date("Y-F-j");
+            $_SESSION['waktu'] = date("H:i:s");
+            $_SESSION['jumlah'] = $_POST['jumlah'];
+        }
+        else{
+            echo "<script type='text/javascript'>alert('Password anda salah');window.location.href='payPub.php';</script>";
+        }
+    }
+}
+
+if(isset($_POST['konfir_pay'])){
+    $query = "SELECT idUser, saldo FROM penggunapublik WHERE username=";
+    $query .= "'".$username."'";
+    $res = $db->executeSelectQuery($query);
+    $idUser = $res[0][0];
+    $saldo = $res[0][1];
+    if($saldo < $_SESSION['jumlah']){
+        echo "<script type='text/javascript'>alert('Saldo tidak cukup');window.location.href='payPub.php';</script>";
+    }
+    else{
+        $_SESSION['idToko'] = $idToko;
+        $_SESSION['jumlah'] = $jumlah;
+        $_SESSION['tanggal'] = $tanggal;
+        $_SESSION['waktu'] = $waktu;
+        $query2 = "INSERT INTO transaksipembayaran
+                VALUES('$idUser', '$idToko', '$jumlah', '$tanggal', '$waktu')";
+        $query_result = $db->executeNonSelectQuery($query2);
+    }
+}
+
+if(isset($_POST['cancel_pay'])){
+    unset($_SESSION['idToko']);
+    unset($_SESSION['namaToko']);
+    unset($_SESSION['alamatToko']);
+    unset($_SESSION['tanggal']);
+    unset($_SESSION['waktu']);
+    unset($_SESSION['jumlah']);
 }
 ?>
