@@ -58,14 +58,40 @@
             <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 350px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div><input type="text" placeholder="Id merchant" style="width: 200px;margin: 5px;" /><input type="text" placeholder="Jumlah pembayaran" style="width: 200px;margin: 30px;" /><input type="text" placeholder="Password" style="width: 200px;" />
                 <button
-                    class="btn btn-primary" type="button" style="margin: 25px;">Pay</button>
+                    class="btn btn-primary" data-toggle="modal" data-target="#myModal" type="button" style="margin: 25px;">Pay</button>
             </div>
             </form>
         </div>
+        <div class="container">         
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Konfirmasi Pembayaran</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <pre>Nama Toko          : </pre>
+                    <pre>Alamat Toko        : </pre>
+                    <pre>Tanggal            : </pre>
+                    <pre>Waktu              : </pre>
+                    <pre>Jumlah Pembayaran  : </pre>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-default">Pay</button>
+                  </div>
+                </div>                
+              </div>
+            </div>            
+          </div>
         <div class="col-md-4"></div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
