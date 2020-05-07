@@ -27,12 +27,15 @@ if(isset($_POST['login_user'])){
         if(count($res2) != 0){
             session_start();
                 $_SESSION['username'] = $username;
+                $_SESSION['nama'] = $res2[0][3];
+                $_SESSION['saldo'] = $res2[0][6];
+                $_SESSION['noHp'] = $res2[0][5];
+                $_SESSION['email'] = $res2[0][4];
             session_write_close();
             header('Location: profPub.php');
         }
         else{
-            echo "<script type='text/javascript'>alert('Wrong Username or Password');</script>";
-            header('Location: index.php');
+            echo "<script type='text/javascript'>alert('Wrong Username or Password');window.location.href='index.php';</script>";
         }
     }
     else if(count($res) != 0){
@@ -62,6 +65,24 @@ if(isset($_POST['reg_toko'])){
         $email = $db->escapeString($email);
         $query = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo)
                 VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0)";
+        $query_result = $db->executeNonSelectQuery($query);
+    }
+}
+
+if(isset($_POST['reg_pub'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $nama = $_POST['nama'];
+    $noHp = $_POST['noHp'];
+    $email = $_POST['email'];
+
+    if(isset($nama) && $nama != ""){
+        $username = $db->escapeString($username);
+        $password = $db->escapeString($password);
+        $nama = $db->escapeString($nama);
+        $email = $db->escapeString($email);
+        $query = "INSERT INTO penggunapublik(username, password, nama, email, noHp, saldo)
+                VALUES('$username', '$password', '$nama', '$email', '$noHp', 0)";
         $query_result = $db->executeNonSelectQuery($query);
     }
 }

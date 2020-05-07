@@ -1,7 +1,7 @@
 <?php 
 	session_start(); 
 	if (isset($_GET['logout'])) {
-        unset($_SESSION['username']);
+        session_unset();
         session_destroy();
 		header("Location: index.php");
 	}
@@ -47,7 +47,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="profPub.html" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.html" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.html" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
+                </ul><a href="profPub.php" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.html" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.html" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
                     style="color: rgb(0,0,0);width: 160px;">History Payment</a><a href="histopPub.html" style="color: rgb(0,0,0);">History TopUp</a></div>
         </div>
     </nav>
@@ -60,9 +60,9 @@
                         <div style="height: 50px;background-image: url(&quot;assets/img/bg-pattern.png&quot;);background-color: rgba(54,162,177,0);opacity: 0;"></div>
                         <div><img class="rounded-circle" src="assets/img/Orang.png" width="85px" height="85px" style="background-color: rgb(255,255,255);padding: 2px;"></div>
                         <div style="height: 80px;">
-                            <h4>dioantares</h4>
+                            <h4><?php echo $_SESSION['nama']; ?></h4>
                             <p style="font-size: 12px;margin: 25px;">Profile Description</p>
-                        </div><input class="form-control-plaintext" type="text" value="Saldo : Rp. 200.000" readonly=""><input class="form-control-plaintext" type="text" value="085722848335" readonly=""><input class="form-control-plaintext" type="text" value="bojongkacorgaming@gmail.com"
+                        </div><input class="form-control-plaintext" type="text" value="Saldo : Rp<?php echo $_SESSION['saldo']; ?>" readonly=""><input class="form-control-plaintext" type="text" value="<?php echo $_SESSION['noHp']; ?>" readonly=""><input class="form-control-plaintext" type="text" value="<?php echo $_SESSION['email']; ?>"
                             readonly=""></div>
                 </div>
                 <div class="col-md-4"></div>
