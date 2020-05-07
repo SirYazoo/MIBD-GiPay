@@ -79,8 +79,10 @@
                     <pre>Jumlah Pembayaran  : </pre>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <form class="form-confirmPay" action="" method="POST">
+                    <button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-default">Pay</button>
+                  </form>
                   </div>
                 </div>                
               </div>
