@@ -1,5 +1,6 @@
 <?php 
-	session_start(); 
+    session_start();
+    include "server.php";
 	if (isset($_GET['logout'])) {
         session_unset();
         session_destroy();
@@ -71,10 +72,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>dioantares</td>
-                <td>200.000</td>
-                <td>6-5-202</td>
+            <?php
+            $username = $_SESSION['username'];
+            $result = getTopup($username);
+            foreach($result as $row) {
+                echo '<tr>';
+                foreach($row as $cell){
+                    echo('<td>' . $cell . '</td>');
+                }
+                echo '</tr>';
+			}
+            ?>
         </tbody>
     </table>
     <script src="assets/js/jquery.min.js"></script>

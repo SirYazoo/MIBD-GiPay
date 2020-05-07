@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2020 at 01:14 PM
+-- Generation Time: May 07, 2020 at 03:03 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -46,6 +46,15 @@ CREATE TABLE `historytopup` (
   `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `historytopup`
+--
+
+INSERT INTO `historytopup` (`idTopup`, `jumlah`, `tanggal`, `idUser`) VALUES
+(1, 20000, '2020-05-07 18:28:56', 4),
+(2, 30000, '2020-05-07 18:29:54', 4),
+(3, 50000, '2020-05-07 18:30:18', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -85,7 +94,8 @@ CREATE TABLE `penggunapublik` (
 --
 
 INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`, `noHp`, `saldo`) VALUES
-(4, 'test', 'test', 'antares', 'test@g', 21, 0);
+(4, 'test', 'test', 'antares', 'test@g', 21, 0),
+(5, 'test2', 'test', 'doi', 'doi@g', 7, 0);
 
 -- --------------------------------------------------------
 
@@ -98,6 +108,15 @@ CREATE TABLE `verifikasi` (
   `nama` varchar(50) NOT NULL,
   `jumlah` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `verifikasi`
+--
+
+INSERT INTO `verifikasi` (`idUser`, `nama`, `jumlah`) VALUES
+(4, 'antares', 25000),
+(4, 'antares', 5600),
+(4, 'antares', 25000);
 
 --
 -- Indexes for dumped tables
@@ -135,7 +154,7 @@ ALTER TABLE `penggunapublik`
 -- Indexes for table `verifikasi`
 --
 ALTER TABLE `verifikasi`
-  ADD PRIMARY KEY (`idUser`) USING BTREE;
+  ADD KEY `FK_idUserVer` (`idUser`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -151,13 +170,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `historytopup`
 --
 ALTER TABLE `historytopup`
-  MODIFY `idTopup` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTopup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `penggunapublik`
 --
 ALTER TABLE `penggunapublik`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

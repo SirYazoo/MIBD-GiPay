@@ -102,4 +102,20 @@ if(isset($_POST['topup'])){
         $query_result = $db->executeNonSelectQuery($query2);
     }
 }
+
+function getTopup($uname){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $username = $uname;
+    $query = "SELECT idUser FROM penggunapublik WHERE username=";
+    $query .= "'".$username."'";
+    $res = $db->executeSelectQuery($query);
+    $idUser = $res[0][0];
+        
+    if(isset($username) && $username != ""){
+        $username = $db->escapeString($username);
+        $query2 = "SELECT idTopup, jumlah, tanggal FROM historytopup WHERE idUser=$idUser";
+        $query_result = $db->executeSelectQuery($query2);
+    }
+    return $query_result;
+}
 ?>
