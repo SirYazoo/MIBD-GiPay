@@ -86,4 +86,20 @@ if(isset($_POST['reg_pub'])){
         $query_result = $db->executeNonSelectQuery($query);
     }
 }
+
+if(isset($_POST['topup'])){
+    $jumlah = $_POST['jumlah'];
+    $nama = $_SESSION['nama'];
+    $query = "SELECT idUser FROM penggunapublik WHERE nama=";
+    $query .= "'".$nama."'";
+    $res = $db->executeSelectQuery($query);
+    $idUser = $res[0][0];
+
+    if(isset($nama) && $nama != ""){
+        $nama = $db->escapeString($nama);
+        $query2 = "INSERT INTO verifikasi
+                VALUES('$idUser', '$nama', '$jumlah')";
+        $query_result = $db->executeNonSelectQuery($query2);
+    }
+}
 ?>

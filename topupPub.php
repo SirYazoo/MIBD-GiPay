@@ -1,3 +1,12 @@
+<?php 
+	session_start(); 
+	if (isset($_GET['logout'])) {
+        session_unset();
+        session_destroy();
+		header("Location: index.php");
+	}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -29,7 +38,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, dioantares" readonly="" style="width: 205px;font-size: 18px;"><a href="index.php" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="profPub.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -38,7 +47,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="profPub.html" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.html" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.html" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
+                </ul><a href="profPub.php" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.php" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.html" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.html"
                     style="color: rgb(0,0,0);width: 160px;">History Payment</a><a href="histopPub.html" style="color: rgb(0,0,0);">History TopUp</a></div>
         </div>
     </nav>
@@ -48,7 +57,7 @@
             <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 370px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                 <div style="height: 50px;background-image: url(&quot;assets/img/bg-pattern.png&quot;);background-color: rgba(54,162,177,0);opacity: 0;"></div>
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;"></div>
-                <div style="height: 80px;"><input class="form-control-plaintext" type="text" value="777085722848335" readonly="" style="padding: 30px;"><input type="text" placeholder="Masukan jumlah saldo" /></div><button class="btn btn-primary" type="button" style="margin-top: 80px;">Top Up</button></div>
+                <div style="height: 80px;"><input class="form-control-plaintext" type="text" value="777<?php echo $_SESSION['noHp']; ?>" readonly="" style="padding: 30px;"><input type="text" placeholder="Masukan jumlah saldo" /></div><button class="btn btn-primary" type="button" style="margin-top: 80px;">Top Up</button></div>
         </div>
         <div class="col-md-4"></div>
     </div>
