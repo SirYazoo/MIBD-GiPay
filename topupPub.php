@@ -54,10 +54,10 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 150px;">
-            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 320px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
+            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 290px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
                 <form class="form-topUpPub" method="POST" action="topupPub.php">
-                    <div style="height: 80px;"><input class="form-control-plaintext" type="text" style="text-align:center;" value="777<?php echo $_SESSION['noHp']; ?>" readonly="" style="padding: 30px;"><input name="jumlah" type="text" style="margin-top: 40px;" placeholder="Masukan jumlah saldo" /></div><button name="topup" class="btn btn-primary" type="submit" style="margin-top: 80px;">Top Up</button></div>
+                    <div style="height: 80px;"><input class="form-control-plaintext" type="text" style="text-align:center;" value="No Virtual : 777<?php echo $_SESSION['noHp']; ?>" readonly="" style="padding: 30px;"><input name="jumlah" type="text" style="margin-top: 25px;" placeholder="Masukan jumlah saldo" /></div><button name="topup" class="btn btn-primary" type="submit" style="margin-top: 50px;">Top Up</button></div>
                 </form>
             </div>
         <div class="col-md-4"></div>
