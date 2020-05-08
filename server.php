@@ -118,35 +118,27 @@ if(isset($_POST['topup'])){
 function getTopup($uname){
     $db = new MySQLDB('localhost', 'root', '', 'gipay');
     $username = $uname;
+    $username = $db->escapeString($username);
     $query = "SELECT idUser FROM penggunapublik WHERE username=";
     $query .= "'".$username."'";
     $res = $db->executeSelectQuery($query);
     $idUser = $res[0][0];
-        
-    if(isset($username) && $username != ""){
-        $username = $db->escapeString($username);
-        $query2 = "SELECT idTopup, jumlah, tanggal FROM historytopup WHERE idUser=$idUser";
-        $query_result = $db->executeSelectQuery($query2);
-    }
+    $query2 = "SELECT idTopup, jumlah, tanggal FROM historytopup WHERE idUser=$idUser";
+    $query_result = $db->executeSelectQuery($query2);
     return $query_result;
 }
 
 function getTrans($uname){
     $db = new MySQLDB('localhost', 'root', '', 'gipay');
     $username = $uname;
+    $username = $db->escapeString($username);
     $query = "SELECT idUser FROM penggunapublik WHERE username=";
     $query .= "'".$username."'";
     $query_result = $db->executeSelectQuery($query);
     $idUser = $query_result[0][0];
-    $query2 = "SELECT * FROM historytransaksi WHERE idUser=$idUser";
+    $query2 = "SELECT namaToko, jumlah, tanggal, waktu FROM historytransaksi INNER JOIN pemiliktoko ON historytransaksi.idToko = pemiliktoko.idUser WHERE historytransaksi.idUser = $idUser";
     $res = $db->executeSelectQuery($query2);
-        
-    if(isset($username) && $username != ""){
-        $username = $db->escapeString($username);
-        $query2 = "SELECT idTopup, jumlah, tanggal FROM historytopup WHERE idUser=$idUser";
-        $query_result = $db->executeSelectQuery($query2);
-    }
-    return $query_result;
+    return $res;
 }
 
 if(isset($_POST['pay'])){
@@ -203,12 +195,20 @@ if(isset($_POST['konfir_pay'])){
         $waktu = $_SESSION['waktu'];
         $query2 = "INSERT INTO historytransaksi
                 VALUES('$idUser', '$idToko', '$jumlah', '$tanggal', '$waktu')";
-        $query_result = $db->executeNonSelectQuery($query2);
+        $res2 = $db->executeNonSelectQuery($query2);
         $upSaldo = $saldo - $jumlah;
         $query3 = "UPDATE penggunapublik
                    SET saldo = $upSaldo
                    WHERE idUser = $idUser";
-        $query_result = $db->executeNonSelectQuery($query3);
+        $res3 = $db->executeNonSelectQuery($query3);
+        $query4 = "SELECT saldo FROM pemiliktoko WHERE idUser=$idToko";
+        $res4 = $db->executeSelectQuery($query4);
+        $saldoToko = $res4[0][0];
+        $upSaldo2 = $saldoToko + $jumlah;
+        $query5 = "UPDATE pemiliktoko
+                   SET saldo = $upSaldo2
+                   WHERE idUser = $idToko";
+        $res5 = $db->executeNonSelectQuery($query5);
         header('Location: payPub.php');
     }
 }

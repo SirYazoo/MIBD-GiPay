@@ -66,7 +66,6 @@
     </div><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100px">
         <thead>
             <tr>
-                <th style="text-align:center;">idPembayaran</th>
                 <th style="text-align:center;">Nama Toko</th>
                 <th style="text-align:center;">Jumlah Pembayaran</th>
                 <th style="text-align:center;">Tanggal</th>
@@ -76,12 +75,17 @@
         <tbody>
             <?php
             $username = $_SESSION['username'];
-            $result = getTopup($username);
-            foreach($result as $row) {
+            $result = getTrans($username);
+            foreach($result as $value) {
+                $namaToko = $value[0];
+                $jumlah = $value[1];
+                $tanggal = $value[2];
+                $waktu = $value[3];
                 echo '<tr>';
-                foreach($row as $cell){
-                    echo('<td>' . $cell . '</td>');
-                }
+                echo '<td>' . $namaToko . '</td>';
+                echo '<td>' . $jumlah . '</td>';
+                echo '<td>' . $tanggal . '</td>';
+                echo '<td>' . $waktu . '</td>';
                 echo '</tr>';
 			}
             ?>
