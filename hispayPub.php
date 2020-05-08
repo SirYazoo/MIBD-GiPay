@@ -1,5 +1,6 @@
 <?php 
-	session_start(); 
+    session_start();
+    include "server.php";
 	if (isset($_GET['logout'])) {
         session_unset();
         session_destroy();

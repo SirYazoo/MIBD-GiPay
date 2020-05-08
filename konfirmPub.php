@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Boxed.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -67,9 +66,9 @@
                   <pre>Waktu              : <?php echo $_SESSION['waktu'] ?></pre>
                   <pre>Jumlah Pembayaran  : <?php echo $_SESSION['jumlah'] ?></pre>
                 </div>                
-                <button name="cancel" class="btn btn-primary" type="submit" style="margin: -15px;">Cancel</button>
+                <button name="cancel_pay" class="btn btn-primary" type="submit" style="margin: -15px;">Cancel</button>
                 <br>
-                <button name="pay" class="btn btn-primary" type="submit" style="margin: 25px;">Pay</button>      
+                <button name="konfir_pay" class="btn btn-primary" type="submit" style="margin: 25px;">Pay</button>      
             </div>
             </form>
         </div>

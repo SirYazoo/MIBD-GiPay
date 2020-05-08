@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 10:55 AM
+-- Generation Time: May 08, 2020 at 01:20 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -76,6 +76,17 @@ CREATE TABLE `historytransaksi` (
   `waktu` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `historytransaksi`
+--
+
+INSERT INTO `historytransaksi` (`idUser`, `idToko`, `jumlah`, `tanggal`, `waktu`) VALUES
+(4, 1, 25000, '0000-00-00', '12:33:30'),
+(4, 1, 1000, '2020-05-08', '12:52:55'),
+(4, 1, 1000, '2020-05-08', '12:54:02'),
+(4, 1, 2000, '2020-05-08', '12:54:41'),
+(4, 1, 3000, '2020-05-08', '18:17:06');
+
 -- --------------------------------------------------------
 
 --
@@ -99,7 +110,8 @@ CREATE TABLE `pemiliktoko` (
 --
 
 INSERT INTO `pemiliktoko` (`idUser`, `username`, `password`, `nama`, `namaToko`, `alamatToko`, `email`, `noHp`, `saldo`) VALUES
-(1, 'test', 'test', 'roi', 'roi', 'roi', 'test@g', 9, 264);
+(1, 'test', 'test', 'roi', 'roi', 'roi', 'test@g', 9, 264),
+(2, 'test2', 'test', 'doi', 'doi', 'doi', 'test@g', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -122,7 +134,7 @@ CREATE TABLE `penggunapublik` (
 --
 
 INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`, `noHp`, `saldo`) VALUES
-(4, 'test', 'test', 'antares', 'test@g', 21, 50000),
+(4, 'test', 'test', 'antares', 'test@g', 21, 44000),
 (5, 'test2', 'test', 'doi', 'doi@g', 7, 0);
 
 -- --------------------------------------------------------
@@ -211,7 +223,7 @@ ALTER TABLE `historytopup`
 -- AUTO_INCREMENT for table `pemiliktoko`
 --
 ALTER TABLE `pemiliktoko`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `penggunapublik`

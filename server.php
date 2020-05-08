@@ -131,6 +131,24 @@ function getTopup($uname){
     return $query_result;
 }
 
+function getTrans($uname){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $username = $uname;
+    $query = "SELECT idUser FROM penggunapublik WHERE username=";
+    $query .= "'".$username."'";
+    $query_result = $db->executeSelectQuery($query);
+    $idUser = $query_result[0][0];
+    $query2 = "SELECT * FROM historytransaksi WHERE idUser=$idUser";
+    $res = $db->executeSelectQuery($query2);
+        
+    if(isset($username) && $username != ""){
+        $username = $db->escapeString($username);
+        $query2 = "SELECT idTopup, jumlah, tanggal FROM historytopup WHERE idUser=$idUser";
+        $query_result = $db->executeSelectQuery($query2);
+    }
+    return $query_result;
+}
+
 if(isset($_POST['pay'])){
     if(empty($_POST['idToko']) || empty($_POST['jumlah']) || empty($_POST['password'])){
         echo "<script type='text/javascript'>alert('Harap isi form dengan lengkap');window.location.href='payPub.php';</script>";
@@ -148,9 +166,14 @@ if(isset($_POST['pay'])){
                 $_SESSION['idToko'] = $idToko;
                 $_SESSION['namaToko'] = $res[0][0];
                 $_SESSION['alamatToko'] = $res[0][1];
-                $_SESSION['tanggal'] = date("Y-F-j");
-                $_SESSION['waktu'] = date("H:i:s");
+                $date = new DateTime('NOW', timezone_open("Asia/Bangkok"));
+                $tanggalLok = date_format($date, "Y-m-j");
+                $waktuLok = date_format($date, "H:i:s");
+                $_SESSION['tanggal'] = $tanggalLok;
+                $_SESSION['waktu'] = $waktuLok;
                 $_SESSION['jumlah'] = $_POST['jumlah'];
+                session_write_close();
+                header('Location: konfirmPub.php');
             }
             else{
                 echo "<script type='text/javascript'>alert('Id merchant salah');window.location.href='payPub.php';</script>";
@@ -163,22 +186,30 @@ if(isset($_POST['pay'])){
 }
 
 if(isset($_POST['konfir_pay'])){
+    $username = $_SESSION['username'];
     $query = "SELECT idUser, saldo FROM penggunapublik WHERE username=";
     $query .= "'".$username."'";
     $res = $db->executeSelectQuery($query);
     $idUser = $res[0][0];
     $saldo = $res[0][1];
-    if($saldo < $_SESSION['jumlah']){
+    $jumlah = $_SESSION['jumlah'];
+    if($saldo < $jumlah){
         echo "<script type='text/javascript'>alert('Saldo tidak cukup');window.location.href='payPub.php';</script>";
     }
     else{
-        $_SESSION['idToko'] = $idToko;
-        $_SESSION['jumlah'] = $jumlah;
-        $_SESSION['tanggal'] = $tanggal;
-        $_SESSION['waktu'] = $waktu;
-        $query2 = "INSERT INTO transaksipembayaran
+        $idToko = $_SESSION['idToko'];
+        $jumlah = $_SESSION['jumlah'];
+        $tanggal = $_SESSION['tanggal'];
+        $waktu = $_SESSION['waktu'];
+        $query2 = "INSERT INTO historytransaksi
                 VALUES('$idUser', '$idToko', '$jumlah', '$tanggal', '$waktu')";
         $query_result = $db->executeNonSelectQuery($query2);
+        $upSaldo = $saldo - $jumlah;
+        $query3 = "UPDATE penggunapublik
+                   SET saldo = $upSaldo
+                   WHERE idUser = $idUser";
+        $query_result = $db->executeNonSelectQuery($query3);
+        header('Location: payPub.php');
     }
 }
 
@@ -189,5 +220,6 @@ if(isset($_POST['cancel_pay'])){
     unset($_SESSION['tanggal']);
     unset($_SESSION['waktu']);
     unset($_SESSION['jumlah']);
+    header('Location: payPub.php');
 }
 ?>
