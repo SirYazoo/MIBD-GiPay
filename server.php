@@ -230,4 +230,30 @@ if(isset($_POST['cancel_pay'])){
     unset($_SESSION['jumlah']);
     header('Location: payPub.php');
 }
+
+if(isset($_POST['tarik_dana'])){
+    $username = $_SESSION['username'];
+    $query = "SELECT idUser, saldo FROM pemiliktoko WHERE username=";
+    $query .= "'".$username."'";
+    $res = $db->executeSelectQuery($query);
+    $idUser = $res[0][0];
+    $saldo = $res[0][1];
+    $noRek = $_POST['noRek'];
+    $jumlah = $_POST['jumlahDana'];
+    $date = new DateTime('NOW', timezone_open("Asia/Bangkok"));
+    $tanggal = date_format($date, "Y-m-j");
+    if($saldo < $jumlah){
+        echo "<script type='text/javascript'>alert('Saldo tidak cukup');window.location.href='penarikanToko.php';</script>";
+    }
+    else{
+        $query2 = "INSERT INTO historypenarikan(noRekening, jumlah, tanggal, idToko)
+                   VALUES('$noRek', '$jumlah', '$tanggal', '$idUser')";
+        $res2 = $db->executeNonSelectQuery($query2);
+        $newSaldo = $saldo - $jumlah;
+        $query3 = "UPDATE pemiliktoko
+                   SET saldo = $newSaldo
+                   WHERE idUser = $idUser";
+        $res3 = $db->executeNonSelectQuery($query3);
+    }
+}
 ?>

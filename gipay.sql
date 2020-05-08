@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 03:22 PM
+-- Generation Time: May 08, 2020 at 08:31 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -39,6 +39,27 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`idAdmin`, `username`, `password`) VALUES
 (1, 'admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `historypenarikan`
+--
+
+CREATE TABLE `historypenarikan` (
+  `idPenarikan` int(11) NOT NULL,
+  `noRekening` int(30) NOT NULL,
+  `jumlah` float NOT NULL,
+  `tanggal` date NOT NULL,
+  `idToko` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `historypenarikan`
+--
+
+INSERT INTO `historypenarikan` (`idPenarikan`, `noRekening`, `jumlah`, `tanggal`, `idToko`) VALUES
+(1, 243, 1000, '2020-05-09', 2);
 
 -- --------------------------------------------------------
 
@@ -112,8 +133,8 @@ CREATE TABLE `pemiliktoko` (
 --
 
 INSERT INTO `pemiliktoko` (`idUser`, `username`, `password`, `nama`, `namaToko`, `alamatToko`, `email`, `noHp`, `saldo`) VALUES
-(1, 'test', 'test', 'roi', 'muksinah', 'roi', 'test@g', 9, 264),
-(2, 'test2', 'test', 'doi', 'doi', 'doi', 'test@g', 8, 25000);
+(1, 'toko', 'toko', 'roi', 'muksinah', 'roi', 'test@g', 9, 264),
+(2, 'toko2', 'toko', 'doi', 'doi', 'doi', 'test@g', 8, 24000);
 
 -- --------------------------------------------------------
 
@@ -172,6 +193,13 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `historypenarikan`
+--
+ALTER TABLE `historypenarikan`
+  ADD PRIMARY KEY (`idPenarikan`),
+  ADD KEY `FK_idToko` (`idToko`);
+
+--
 -- Indexes for table `historytopup`
 --
 ALTER TABLE `historytopup`
@@ -216,6 +244,12 @@ ALTER TABLE `admin`
   MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `historypenarikan`
+--
+ALTER TABLE `historypenarikan`
+  MODIFY `idPenarikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `historytopup`
 --
 ALTER TABLE `historytopup`
@@ -236,6 +270,12 @@ ALTER TABLE `penggunapublik`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `historypenarikan`
+--
+ALTER TABLE `historypenarikan`
+  ADD CONSTRAINT `FK_idToko` FOREIGN KEY (`idToko`) REFERENCES `pemiliktoko` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `historytopup`

@@ -1,5 +1,6 @@
 <?php 
-	session_start(); 
+    session_start(); 
+    include "server.php";
 	if (isset($_GET['logout'])) {
         session_unset();
         session_destroy();
@@ -56,16 +57,16 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="margin-top: 150px;">
-                    <form class="penarikanDana" action="" method="POST">
+                    <form class="penarikanDana" action="penarikanToko.php" method="POST">
                     <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 350px;height: 280px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                         <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
                         <div style="height: 10px;">    
                         </div>
                         <input name="noRek" type="text" placeholder="No Rekening" style="width: 200px;" />
                         <input name="jumlahDana" type="text" placeholder="Jumlah Dana" style="width: 200px; margin-top: 20px;" />
-                        <button name="tarikDana" class="btn btn-primary" type="submit" style="margin: 25px;">Tarik Dana</button>    
+                        <button name="tarik_dana" class="btn btn-primary" type="submit" style="margin: 25px;">Tarik Dana</button>    
                     </div>
-                </form>
+                    </form>
                 </div>
                 <div class="col-md-4"></div>
             </div>

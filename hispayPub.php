@@ -76,16 +76,11 @@
             <?php
             $username = $_SESSION['username'];
             $result = getTrans($username);
-            foreach($result as $value) {
-                $namaToko = $value[0];
-                $jumlah = $value[1];
-                $tanggal = $value[2];
-                $waktu = $value[3];
+            foreach($result as $row) {
                 echo '<tr>';
-                echo '<td>' . $namaToko . '</td>';
-                echo '<td>' . $jumlah . '</td>';
-                echo '<td>' . $tanggal . '</td>';
-                echo '<td>' . $waktu . '</td>';
+                foreach($row as $cell){
+                    echo('<td>' . $cell . '</td>');
+                }
                 echo '</tr>';
 			}
             ?>
