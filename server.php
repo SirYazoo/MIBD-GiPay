@@ -35,7 +35,19 @@ if(isset($_POST['login_user'])){
             header('Location: profPub.php');
         }
         else{
-            echo "<script type='text/javascript'>alert('Username atau Password salah');window.location.href='index.php';</script>";
+            $query3 = "SELECT * FROM admin WHERE username=";
+            $query3 .= "'".$username."' AND ";
+            $query3 .= "password='".$password."'";
+            $res3 = $db->executeSelectQuery($query3);
+            if(count($res3) != 0){
+                session_start();
+                    $_SESSION['username'] = $username;
+                session_write_close();
+                header('Location: adminLPub.php');
+            }
+            else{
+                echo "<script type='text/javascript'>alert('Username atau Password salah');window.location.href='index.php';</script>";
+            }
         }
     }
     else if(count($res) != 0){
@@ -119,7 +131,7 @@ function getTopup($uname){
     return $query_result;
 }
 
-if(isset($_POST['check'])){
+if(isset($_POST['pay'])){
     if(empty($_POST['idToko']) || empty($_POST['jumlah']) || empty($_POST['password'])){
         echo "<script type='text/javascript'>alert('Harap isi form dengan lengkap');window.location.href='payPub.php';</script>";
     }
