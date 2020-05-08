@@ -44,22 +44,32 @@
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-2" style="background-color: #d7d6d6;font-size: 20px;height: 50px;color: rgb(0,0,0);">
+            <div class="collapse navbar-collapse" id="navcol-2" style="background-color: white;font-size: 20px;height: 50px;color: rgb(0,0,0);">
                 <ul class="nav navbar-nav">
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="profPub.php" style="color: rgb(0,0,0);width: 70px;">Profile</a><a href="topupPub.php" style="color: rgb(0,0,0);width: 80px;">Top Up</a><a href="payPub.php" style="color: rgb(0,0,0);width: 90px;">Payment</a><a href="hispayPub.php"
-                    style="color: rgb(0,0,0);width: 160px;">History Payment</a><a href="histopPub.php" style="color: rgb(0,0,0);">History TopUp</a></div>
+                </ul>
         </div>
     </nav>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 150px;">
             <form class="form-payPub" method="POST">
-            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 340px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
-                <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div><input name="idToko" type="text" placeholder="Id merchant" style="width: 200px;margin: 5px;" /><input name="jumlah" type="text" placeholder="Jumlah pembayaran" style="width: 200px;margin: 30px;" /><input name="password" type="password" placeholder="Password" style="width: 200px;" />
-                <a href="konfirmPub.php" name="pay" class="btn btn-primary" type="submit" style="margin: 25px;">Pay</a>    
+            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 480px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
+                <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
+                <h4 class="modal-title">Konfirmasi Pembayaran</h4>
+                <br>
+                <div class="modal-body">
+                  <pre>Nama Toko          : <?php echo $_SESSION['namaToko'] ?></pre>
+                  <pre>Alamat Toko        : <?php echo $_SESSION['alamatToko'] ?></pre>
+                  <pre>Tanggal            : <?php echo $_SESSION['tanggal'] ?></pre>
+                  <pre>Waktu              : <?php echo $_SESSION['waktu'] ?></pre>
+                  <pre>Jumlah Pembayaran  : <?php echo $_SESSION['jumlah'] ?></pre>
+                </div>                
+                <a href="konfirmPub.php" name="cancel" class="btn btn-primary" type="submit" style="margin: -15px;">Cancel</a>
+                <br>
+                <button name="pay" class="btn btn-primary" type="submit" style="margin: 25px;">Pay</button>      
             </div>
             </form>
         </div>
