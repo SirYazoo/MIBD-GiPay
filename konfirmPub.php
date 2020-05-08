@@ -67,7 +67,7 @@
                   <pre>Waktu              : <?php echo $_SESSION['waktu'] ?></pre>
                   <pre>Jumlah Pembayaran  : <?php echo $_SESSION['jumlah'] ?></pre>
                 </div>                
-                <a href="konfirmPub.php" name="cancel" class="btn btn-primary" type="submit" style="margin: -15px;">Cancel</a>
+                <button name="cancel" class="btn btn-primary" type="submit" style="margin: -15px;">Cancel</button>
                 <br>
                 <button name="pay" class="btn btn-primary" type="submit" style="margin: 25px;">Pay</button>      
             </div>
