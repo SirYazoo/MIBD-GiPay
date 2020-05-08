@@ -20,11 +20,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="assets/css/Google-Style-Login.css">
+    <link rel="stylesheet" href="assets/css/Data-Table-1.css">
+    <link rel="stylesheet" href="assets/css/Data-Table.css">
     <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Google-Style-Login.css">
     <link rel="stylesheet" href="assets/css/LinkedIn-like-Profile-Box.css">
     <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
     <link rel="stylesheet" href="assets/css/Team-Boxed.css">
 </head>
 
@@ -51,8 +56,41 @@
                     style="color: rgb(0,0,0);width: 160px;">History Payment</a><a href="histopPub.php" style="color: rgb(0,0,0);">History TopUp</a></div>
         </div>
     </nav>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="height: 40px;background-color: #ffffff;"></div>
+            </div>
+        </div>
+    </div><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100px">
+        <thead>
+            <tr>
+                <th style="text-align:center;">idPembayaran</th>
+                <th style="text-align:center;">Nama Toko</th>
+                <th style="text-align:center;">Jumlah Pembayaran</th>
+                <th style="text-align:center;">Tanggal</th>
+                <th style="text-align:center;">Waktu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $username = $_SESSION['username'];
+            $result = getTopup($username);
+            foreach($result as $row) {
+                echo '<tr>';
+                foreach($row as $cell){
+                    echo('<td>' . $cell . '</td>');
+                }
+                echo '</tr>';
+			}
+            ?>
+        </tbody>
+    </table>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
 </body>
 
 </html>

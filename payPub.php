@@ -56,10 +56,10 @@
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 150px;">
             <form class="form-payPub" method="POST">
-            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 350px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
+            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 300px;height: 400px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div><input name="idToko" type="text" placeholder="Id merchant" style="width: 200px;margin: 5px;" /><input name="jumlah" type="text" placeholder="Jumlah pembayaran" style="width: 200px;margin: 30px;" /><input name="password" type="password" placeholder="Password" style="width: 200px;" />
-                <button
-                    class="btn btn-primary" data-toggle="modal" data-target="#myModal" type="button" style="margin: 25px;">Pay</button>
+                <button class="btn btn-primary" type="submit" style="margin: 25px;">Check</button><br>  
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" type="button" style="margin: -15px;">Pay</button>      
             </div>
             </form>
         </div>
