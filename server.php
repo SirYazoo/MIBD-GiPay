@@ -8,11 +8,11 @@ if(isset($_POST['login_user'])){
     $password = $_POST['password'];
     $query = "SELECT * FROM pemiliktoko WHERE username=";
 
-    if(isset($username) && $username!=""){
+    if(isset($username) && $username != ""){
         $username = $db->escapeString($username);
         $query .= "'".$username."' AND ";
     }
-    if(isset($pass) && $pass!=""){
+    if(isset($password) && $password != ""){
         $password = $db->escapeString($password);
         $query .= "password='".$password."'";
     }
@@ -50,9 +50,15 @@ if(isset($_POST['login_user'])){
             }
         }
     }
-    else if(count($res) != 0){
+    else{
         session_start();
             $_SESSION['username'] = $username;
+            $_SESSION['nama'] = $res[0][3];
+            $_SESSION['saldo'] = $res[0][8];
+            $_SESSION['noHp'] = $res[0][7];
+            $_SESSION['email'] = $res[0][6];
+            $_SESSION['namaToko'] = $res[0][4];
+            $_SESSION['alamatToko'] = $res[0][5];
         session_write_close();
         header('Location: profToko.php');
     }
@@ -78,6 +84,7 @@ if(isset($_POST['reg_toko'])){
         $query = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo)
                 VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0)";
         $query_result = $db->executeNonSelectQuery($query);
+        header('Location: index.php');
     }
 }
 
@@ -96,6 +103,7 @@ if(isset($_POST['reg_pub'])){
         $query = "INSERT INTO penggunapublik(username, password, nama, email, noHp, saldo)
                 VALUES('$username', '$password', '$nama', '$email', '$noHp', 0)";
         $query_result = $db->executeNonSelectQuery($query);
+        header('Location: index.php');
     }
 }
 

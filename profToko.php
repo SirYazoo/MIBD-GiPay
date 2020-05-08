@@ -38,7 +38,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="profPub.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="profToko.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -62,7 +62,7 @@
                             <h4><?php echo $_SESSION['nama']; ?></h4>
                             <p style="font-size: 12px;margin: 25px;">Profile Description</p>
                         </div><input class="form-control-plaintext" type="text" style="text-align:center;" value="Saldo : Rp<?php echo $_SESSION['saldo']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="No HP : <?php echo $_SESSION['noHp']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Email : <?php echo $_SESSION['email']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Nama Toko : <?php echo $_SESSION['email']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Alamat Toko : <?php echo $_SESSION['email']; ?>" readonly="">
-                            readonly=""></div>
+                    </div>
                 </div>
                 <div class="col-md-4"></div>
             </div>
