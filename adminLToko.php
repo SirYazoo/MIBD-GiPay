@@ -34,7 +34,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, dioantares" readonly="" style="width: 205px;font-size: 18px;"><a href="index.html" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="index.html" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -43,7 +43,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="" style="color: rgb(0,0,0);width: 210px;">&nbsp;List Pengguna Publik</a><a href="" style="color: rgb(0,0,0);width: 169px;">List Pemilik Toko</a><a href="" style="color: rgb(0,0,0);width: 180px;">Verifikasi TopUp</a><a href=""
+                </ul><a href="adminLPub.php" style="color: rgb(0,0,0);width: 210px;">&nbsp;List Pengguna Publik</a><a href="adminLToko.php" style="color: rgb(0,0,0);width: 169px;">List Pemilik Toko</a><a href="" style="color: rgb(0,0,0);width: 180px;">Verifikasi TopUp</a><a href=""
                     style="color: rgb(0,0,0);width: 215px;">Presentase Potongan</a><a href="" style="color: rgb(0,0,0);">Statistik SignUp</a></div>
         </div>
     </nav>
@@ -60,6 +60,8 @@
         <thead>
             <tr>
                 <th>idUser</th>
+                <th>Username</th>
+                <th>Password</th>
                 <th>Nama</th>
                 <th>Nama Toko</th>
                 <th>Alamat Toko</th>
@@ -70,6 +72,8 @@
         </thead>
         <tbody>
             <tr>
+                <td>rio</td>
+                <td>rio</td>
                 <td>rio</td>
                 <td>rio</td>
                 <td>rio</td>

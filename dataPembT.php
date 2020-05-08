@@ -1,5 +1,6 @@
 <?php 
-	session_start(); 
+    session_start();
+    include "server.php";
 	if (isset($_GET['logout'])) {
         session_unset();
         session_destroy();
@@ -20,11 +21,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="assets/css/Google-Style-Login.css">
+    <link rel="stylesheet" href="assets/css/Data-Table-1.css">
+    <link rel="stylesheet" href="assets/css/Data-Table.css">
     <link rel="stylesheet" href="assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Google-Style-Login.css">
     <link rel="stylesheet" href="assets/css/LinkedIn-like-Profile-Box.css">
     <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-1.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
     <link rel="stylesheet" href="assets/css/Team-Boxed.css">
 </head>
 
@@ -38,7 +44,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="profToko.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="hispayPub.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -54,22 +60,41 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4" style="margin-top: 150px;">
-                    <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 350px;height: 400px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
-                        <div><img class="rounded-circle" src="assets/img/Toko.png" width="130px" height="130px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
-                        <div style="height: 80px;">
-                            <h4><?php echo $_SESSION['nama']; ?></h4>
-                            <p style="font-size: 12px;margin: 25px;">Profile Description</p>
-                        </div><input class="form-control-plaintext" type="text" style="text-align:center;" value="Saldo : Rp<?php echo $_SESSION['saldo']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="No HP : <?php echo $_SESSION['noHp']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Email : <?php echo $_SESSION['email']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Nama Toko : <?php echo $_SESSION['email']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Alamat Toko : <?php echo $_SESSION['email']; ?>" readonly="">
-                    </div>
-                </div>
-                <div class="col-md-4"></div>
+                <div class="col-md-12" style="height: 40px;background-color: #ffffff;"></div>
             </div>
         </div>
-    </div>
+    </div><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100px">
+        <thead>
+            <tr>
+                <th style="text-align:center;">Jumlah</th>
+                <th style="text-align:center;">Tanggal</th>
+                <th style="text-align:center;">Waktu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <?php
+            $username = $_SESSION['username'];
+            $result = getTrans($username);
+            foreach($result as $value) {
+                $namaToko = $value[0];
+                $jumlah = $value[1];
+                $tanggal = $value[2];
+                $waktu = $value[3];
+                echo '<tr>';
+                echo '<td>' . $namaToko . '</td>';
+                echo '<td>' . $jumlah . '</td>';
+                echo '<td>' . $tanggal . '</td>';
+                echo '<td>' . $waktu . '</td>';
+                echo '</tr>';
+			}
+            ?> -->
+        </tbody>
+    </table>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/Table-With-Search.js"></script>
 </body>
 
 </html>

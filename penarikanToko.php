@@ -47,7 +47,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="profToko.php" style="color: rgb(0,0,0);width: 80px;">Profile</a><a href="penarikanToko.php" style="color: rgb(0,0,0);width: 160px;">Penarikan Dana</a><a href="" style="color: rgb(0,0,0);width: 230px;">Data Pembayaran Toko</a><a href=""
+                </ul><a href="profToko.php" style="color: rgb(0,0,0);width: 80px;">Profile</a><a href="penarikanToko.php" style="color: rgb(0,0,0);width: 160px;">Penarikan Dana</a><a href="dataPembT.php" style="color: rgb(0,0,0);width: 230px;">Data Pembayaran Toko</a><a href="dataPenT.php"
                     style="color: rgb(0,0,0);width: 230px;">Data Penarikan Dana</a></div>
         </div>
     </nav>
