@@ -119,7 +119,7 @@ function getTopup($uname){
     return $query_result;
 }
 
-if(isset($_POST['pay'])){
+if(isset($_POST['check'])){
     if(empty($_POST['idToko']) || empty($_POST['jumlah']) || empty($_POST['password'])){
         echo "<script type='text/javascript'>alert('Harap isi form dengan lengkap');window.location.href='payPub.php';</script>";
     }
@@ -132,12 +132,17 @@ if(isset($_POST['pay'])){
             $idToko = $_POST['idToko'];
             $query = "SELECT namaToko, alamatToko FROM pemiliktoko WHERE idUser=$idToko";
             $res = $db->executeSelectQuery($query);
-            $_SESSION['idToko'] = $idToko;
-            $_SESSION['namaToko'] = $res[0][0];
-            $_SESSION['alamatToko'] = $res[0][1];
-            $_SESSION['tanggal'] = date("Y-F-j");
-            $_SESSION['waktu'] = date("H:i:s");
-            $_SESSION['jumlah'] = $_POST['jumlah'];
+            if(count($res) != 0){
+                $_SESSION['idToko'] = $idToko;
+                $_SESSION['namaToko'] = $res[0][0];
+                $_SESSION['alamatToko'] = $res[0][1];
+                $_SESSION['tanggal'] = date("Y-F-j");
+                $_SESSION['waktu'] = date("H:i:s");
+                $_SESSION['jumlah'] = $_POST['jumlah'];
+            }
+            else{
+                echo "<script type='text/javascript'>alert('Id merchant salah');window.location.href='payPub.php';</script>";
+            }
         }
         else{
             echo "<script type='text/javascript'>alert('Password anda salah');window.location.href='payPub.php';</script>";
