@@ -56,12 +56,16 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="margin-top: 150px;">
+                    <form class="penarikanDana" action="" method="POST">
                     <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 350px;height: 280px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                         <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
                         <div style="height: 10px;">
-                        </div><input class="form-control-plaintext" type="text" style="text-align:center;" value="No Rekening : <?php echo $_SESSION['']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Jumlah Saldo : <?php echo $_SESSION['']; ?>" readonly="">
-                        <button name="tarikDana" class="btn btn-primary" type="submit" style="margin: 25px;">Tarik Dana</button>    
+                            <input name="noRek" type="text" placeholder="No Rekening" style="width: 200px;" />
+                            <input name="jumlahDana" type="text" placeholder="Jumlah Dana" style="width: 200px; margin-top: 20px;" />
+                        </div>
+                        <button name="tarikDana" class="btn btn-primary" type="submit" style="margin: 95px;">Tarik Dana</button>    
                     </div>
+                </form>
                 </div>
                 <div class="col-md-4"></div>
             </div>

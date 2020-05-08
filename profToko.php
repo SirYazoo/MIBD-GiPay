@@ -58,7 +58,7 @@
                 <div class="col-md-4" style="margin-top: 150px;">
                     <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 350px;height: 400px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                         <div><img class="rounded-circle" src="assets/img/Toko.png" width="130px" height="130px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
-                        <div style="height: 30px;">
+                        <div style="height: 80px;">
                             <h4><?php echo $_SESSION['nama']; ?></h4>
                             <p style="font-size: 12px;margin: 25px;">Profile Description</p>
                         </div><input class="form-control-plaintext" type="text" style="text-align:center;" value="Saldo : Rp<?php echo $_SESSION['saldo']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="No HP : <?php echo $_SESSION['noHp']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Email : <?php echo $_SESSION['email']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Nama Toko : <?php echo $_SESSION['email']; ?>" readonly=""><input class="form-control-plaintext" type="text" style="text-align:center;" value="Alamat Toko : <?php echo $_SESSION['email']; ?>" readonly="">
