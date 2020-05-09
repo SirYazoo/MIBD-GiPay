@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 09:46 AM
+-- Generation Time: May 09, 2020 at 02:43 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -159,7 +159,7 @@ CREATE TABLE `penggunapublik` (
 --
 
 INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`, `noHp`, `saldo`) VALUES
-(4, 'test', 'test', 'antares', 'test@g', 21, 43000),
+(4, 'test', 'test', 'antares', 'test@g', 21, 68000),
 (5, 'test2', 'test', 'doi', 'doi@g', 7, 69400);
 
 -- --------------------------------------------------------
@@ -170,7 +170,6 @@ INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`,
 
 CREATE TABLE `verifikasi` (
   `idUser` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
   `jumlah` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -178,10 +177,9 @@ CREATE TABLE `verifikasi` (
 -- Dumping data for table `verifikasi`
 --
 
-INSERT INTO `verifikasi` (`idUser`, `nama`, `jumlah`) VALUES
-(4, 'antares', 25000),
-(4, 'antares', 5600),
-(4, 'antares', 25000);
+INSERT INTO `verifikasi` (`idUser`, `jumlah`) VALUES
+(4, 5600),
+(4, 25000);
 
 --
 -- Indexes for dumped tables

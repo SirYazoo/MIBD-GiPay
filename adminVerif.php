@@ -66,18 +66,17 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><form class="form-blokPub" action="" method="POST"><input type="text" style="margin-right: 8px;"><button name="adminVerif" class="btn btn-primary" type="submit">Accept</button></form></div>
+            </div><form class="form-blokPub" action="adminVerif.php" method="POST"><input name="idUser" type="text" style="margin-right: 8px;"><button name="verifikasi" class="btn btn-primary" type="submit">Accept</button></form></div>
     </nav><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>idUser</th>
-                <th>Nama</th>
                 <th>Jumlah</th>
             </tr>
         </thead>
         <tbody>
-            <!-- <?php
-            $result = getListToko();
+            <?php
+            $result = getListVer();
             foreach($result as $row) {
                 echo '<tr>';
                 foreach($row as $cell){
@@ -85,7 +84,7 @@
                 }
                 echo '</tr>';
 			}
-            ?> -->
+            ?>
         </tbody>
     </table>
     <script src="assets/js/jquery.min.js"></script>

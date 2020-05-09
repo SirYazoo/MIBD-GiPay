@@ -84,7 +84,7 @@ if(isset($_POST['reg_toko'])){
         $query = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo)
                 VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0)";
         $query_result = $db->executeNonSelectQuery($query);
-        header('Location: index.php');
+        echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
     }
 }
 
@@ -103,7 +103,7 @@ if(isset($_POST['reg_pub'])){
         $query = "INSERT INTO penggunapublik(username, password, nama, email, noHp, saldo)
                 VALUES('$username', '$password', '$nama', '$email', '$noHp', 0)";
         $query_result = $db->executeNonSelectQuery($query);
-        header('Location: index.php');
+        echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
     }
 }
 
@@ -121,6 +121,8 @@ if(isset($_POST['topup'])){
                 VALUES('$idUser', '$nama', '$jumlah')";
         $query_result = $db->executeNonSelectQuery($query2);
     }
+
+    echo "<script type='text/javascript'>alert('Topup berhasil');</script>";
 }
 
 function upSaldoPub($uname){
@@ -211,6 +213,13 @@ function getListToko(){
     return $res;
 }
 
+function getListVer(){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $query = "SELECT * FROM verifikasi";
+    $res = $db->executeSelectQuery($query);
+    return $res;
+}
+
 if(isset($_POST['pay'])){
     if(empty($_POST['idToko']) || empty($_POST['jumlah']) || empty($_POST['password'])){
         echo "<script type='text/javascript'>alert('Harap isi form dengan lengkap');window.location.href='payPub.php';</script>";
@@ -279,7 +288,7 @@ if(isset($_POST['konfir_pay'])){
                    SET saldo = $upSaldo2
                    WHERE idUser = $idToko";
         $res5 = $db->executeNonSelectQuery($query5);
-        header('Location: payPub.php');
+        echo "<script type='text/javascript'>alert('Pembayaran berhasil');window.location.href='payPub.php';</script>";
     }
 }
 
@@ -316,6 +325,7 @@ if(isset($_POST['tarik_dana'])){
                    SET saldo = $newSaldo
                    WHERE idUser = $idUser";
         $res3 = $db->executeNonSelectQuery($query3);
+        echo "<script type='text/javascript'>alert('Penarikan berhasil');window.location.href='penarikanToko.php';</script>";
     }
 }
 
@@ -331,5 +341,25 @@ if(isset($_POST['delete_toko'])){
     $query = "DELETE FROM pemiliktoko
               WHERE idUser = $idUser";
     $query_result = $db->executeNonSelectQuery($query);
+}
+
+if(isset($_POST['verifikasi'])){
+    $idUser = $_POST['idUser'];
+    $query = "SELECT * FROM verifikasi WHERE idUser=$idUser LIMIT 1";
+    $res = $db->executeSelectQuery($query);
+    $idUserVer = $res[0][0];
+    $jumlah = $res[0][1];
+    $query2 = "SELECT saldo FROM penggunapublik WHERE idUser=$idUser";
+    $res2 = $db->executeSelectQuery($query2);
+    $saldo = $res2[0][0];
+    $newSaldo = $saldo + $jumlah;
+    $query3 = "UPDATE penggunapublik
+               SET saldo = $newSaldo
+               WHERE idUser = $idUser";
+    $res3 = $db->executeNonSelectQuery($query3);
+    $query4 = "DELETE FROM verifikasi
+               WHERE idUser = $idUserVer AND jumlah = $jumlah
+               LIMIT 1";
+    $res4 = $db->executeNonSelectQuery($query4);
 }
 ?>

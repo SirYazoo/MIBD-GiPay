@@ -66,7 +66,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><form class="form-blokPub" action="" method="POST"><input type="text" style="margin-right: 8px;"><button name="deleteLToko" class="btn btn-primary" type="submit">Delete</button></form></div>
+            </div><form class="form-blokPub" action="adminLToko.php" method="POST"><input name="idUser" type="text" style="margin-right: 8px;"><button name="delete_toko" class="btn btn-primary" type="submit">Delete</button></form></div>
     </nav><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -82,7 +82,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <?php
+            <?php
             $result = getListToko();
             foreach($result as $row) {
                 echo '<tr>';
@@ -91,7 +91,7 @@
                 }
                 echo '</tr>';
 			}
-            ?> -->
+            ?>
         </tbody>
     </table>
     <script src="assets/js/jquery.min.js"></script>
