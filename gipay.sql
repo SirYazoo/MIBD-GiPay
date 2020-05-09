@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 08:31 PM
+-- Generation Time: May 09, 2020 at 08:44 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -59,7 +59,8 @@ CREATE TABLE `historypenarikan` (
 --
 
 INSERT INTO `historypenarikan` (`idPenarikan`, `noRekening`, `jumlah`, `tanggal`, `idToko`) VALUES
-(1, 243, 1000, '2020-05-09', 2);
+(1, 243, 1000, '2020-05-09', 2),
+(2, 234, 1000, '2020-05-09', 2);
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,8 @@ INSERT INTO `historytransaksi` (`idUser`, `idToko`, `jumlah`, `tanggal`, `waktu`
 (4, 1, 2000, '2020-05-08', '12:54:41'),
 (4, 1, 3000, '2020-05-08', '18:17:06'),
 (5, 2, 5600, '2020-05-08', '19:59:36'),
-(5, 2, 25000, '2020-05-08', '20:20:36');
+(5, 2, 25000, '2020-05-08', '20:20:36'),
+(4, 2, 1000, '2020-05-09', '13:23:51');
 
 -- --------------------------------------------------------
 
@@ -157,7 +159,7 @@ CREATE TABLE `penggunapublik` (
 --
 
 INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`, `noHp`, `saldo`) VALUES
-(4, 'test', 'test', 'antares', 'test@g', 21, 44000),
+(4, 'test', 'test', 'antares', 'test@g', 21, 43000),
 (5, 'test2', 'test', 'doi', 'doi@g', 7, 69400);
 
 -- --------------------------------------------------------
@@ -247,7 +249,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `historypenarikan`
 --
 ALTER TABLE `historypenarikan`
-  MODIFY `idPenarikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPenarikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `historytopup`

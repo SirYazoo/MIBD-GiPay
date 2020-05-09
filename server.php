@@ -123,6 +123,28 @@ if(isset($_POST['topup'])){
     }
 }
 
+function upSaldoPub($uname){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $username = $uname;
+    $username = $db->escapeString($username);
+    $query = "SELECT saldo FROM penggunapublik WHERE username=";
+    $query .= "'".$username."'";
+    $res = $db->executeSelectQuery($query);
+    $saldo = $res[0][0];
+    return $saldo;
+}
+
+function upSaldoToko($uname){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $username = $uname;
+    $username = $db->escapeString($username);
+    $query = "SELECT saldo FROM pemiliktoko WHERE username=";
+    $query .= "'".$username."'";
+    $res = $db->executeSelectQuery($query);
+    $saldo = $res[0][0];
+    return $saldo;
+}
+
 function getTopup($uname){
     $db = new MySQLDB('localhost', 'root', '', 'gipay');
     $username = $uname;
@@ -145,6 +167,32 @@ function getTrans($uname){
     $query_result = $db->executeSelectQuery($query);
     $idUser = $query_result[0][0];
     $query2 = "SELECT namaToko, jumlah, tanggal, waktu FROM historytransaksi INNER JOIN pemiliktoko ON historytransaksi.idToko = pemiliktoko.idUser WHERE historytransaksi.idUser = $idUser";
+    $res = $db->executeSelectQuery($query2);
+    return $res;
+}
+
+function getTransToko($uname){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $username = $uname;
+    $username = $db->escapeString($username);
+    $query = "SELECT idUser FROM pemiliktoko WHERE username=";
+    $query .= "'".$username."'";
+    $query_result = $db->executeSelectQuery($query);
+    $idUser = $query_result[0][0];
+    $query2 = "SELECT jumlah, tanggal, waktu FROM historytransaksi WHERE idToko = $idUser";
+    $res = $db->executeSelectQuery($query2);
+    return $res;
+}
+
+function getPenToko($uname){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $username = $uname;
+    $username = $db->escapeString($username);
+    $query = "SELECT idUser FROM pemiliktoko WHERE username=";
+    $query .= "'".$username."'";
+    $query_result = $db->executeSelectQuery($query);
+    $idUser = $query_result[0][0];
+    $query2 = "SELECT noRekening, jumlah, tanggal FROM historypenarikan WHERE idToko = $idUser";
     $res = $db->executeSelectQuery($query2);
     return $res;
 }

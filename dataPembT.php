@@ -44,7 +44,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="hispayPub.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="dataPembT.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -72,22 +72,17 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <?php
+            <?php
             $username = $_SESSION['username'];
-            $result = getTrans($username);
-            foreach($result as $value) {
-                $namaToko = $value[0];
-                $jumlah = $value[1];
-                $tanggal = $value[2];
-                $waktu = $value[3];
+            $result = getTransToko($username);
+            foreach($result as $row) {
                 echo '<tr>';
-                echo '<td>' . $namaToko . '</td>';
-                echo '<td>' . $jumlah . '</td>';
-                echo '<td>' . $tanggal . '</td>';
-                echo '<td>' . $waktu . '</td>';
+                foreach($row as $cell){
+                    echo('<td>' . $cell . '</td>');
+                }
                 echo '</tr>';
 			}
-            ?> -->
+            ?>
         </tbody>
     </table>
     <script src="assets/js/jquery.min.js"></script>

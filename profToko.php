@@ -1,5 +1,9 @@
 <?php 
-	session_start(); 
+    session_start();
+    include "server.php";
+    $username = $_SESSION['username'];
+    $result =  upSaldoToko($username);
+    $_SESSION['saldo'] = $result;
 	if (isset($_GET['logout'])) {
         session_unset();
         session_destroy();
