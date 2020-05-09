@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 02:43 PM
+-- Generation Time: May 09, 2020 at 06:54 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -110,7 +110,19 @@ INSERT INTO `historytransaksi` (`idUser`, `idToko`, `jumlah`, `tanggal`, `waktu`
 (4, 1, 3000, '2020-05-08', '18:17:06'),
 (5, 2, 5600, '2020-05-08', '19:59:36'),
 (5, 2, 25000, '2020-05-08', '20:20:36'),
-(4, 2, 1000, '2020-05-09', '13:23:51');
+(4, 2, 1000, '2020-05-09', '13:23:51'),
+(4, 2, 1000, '2020-05-09', '23:47:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kota`
+--
+
+CREATE TABLE `kota` (
+  `idKota` int(11) NOT NULL,
+  `namaKota` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -136,7 +148,7 @@ CREATE TABLE `pemiliktoko` (
 
 INSERT INTO `pemiliktoko` (`idUser`, `username`, `password`, `nama`, `namaToko`, `alamatToko`, `email`, `noHp`, `saldo`) VALUES
 (1, 'toko', 'toko', 'roi', 'muksinah', 'roi', 'test@g', 9, 264),
-(2, 'toko2', 'toko', 'doi', 'doi', 'doi', 'test@g', 8, 24000);
+(2, 'toko2', 'toko', 'doi', 'doi', 'doi', 'test@g', 8, 24995);
 
 -- --------------------------------------------------------
 
@@ -151,16 +163,34 @@ CREATE TABLE `penggunapublik` (
   `nama` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `noHp` int(12) NOT NULL,
-  `saldo` float NOT NULL
+  `saldo` float NOT NULL,
+  `tanggalSignUp` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `penggunapublik`
 --
 
-INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`, `noHp`, `saldo`) VALUES
-(4, 'test', 'test', 'antares', 'test@g', 21, 68000),
-(5, 'test2', 'test', 'doi', 'doi@g', 7, 69400);
+INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`, `noHp`, `saldo`, `tanggalSignUp`) VALUES
+(4, 'test', 'test', 'antares', 'test@g', 21, 67000, '2020-05-07'),
+(5, 'test2', 'test', 'doi', 'doi@g', 7, 69400, '2020-05-08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `persentasipotongan`
+--
+
+CREATE TABLE `persentasipotongan` (
+  `persentasi` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `persentasipotongan`
+--
+
+INSERT INTO `persentasipotongan` (`persentasi`) VALUES
+(0.5);
 
 -- --------------------------------------------------------
 
@@ -214,6 +244,12 @@ ALTER TABLE `historytransaksi`
   ADD KEY `FK_idUserBayar` (`idUser`);
 
 --
+-- Indexes for table `kota`
+--
+ALTER TABLE `kota`
+  ADD PRIMARY KEY (`idKota`);
+
+--
 -- Indexes for table `pemiliktoko`
 --
 ALTER TABLE `pemiliktoko`
@@ -254,6 +290,12 @@ ALTER TABLE `historypenarikan`
 --
 ALTER TABLE `historytopup`
   MODIFY `idTopup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `kota`
+--
+ALTER TABLE `kota`
+  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pemiliktoko`

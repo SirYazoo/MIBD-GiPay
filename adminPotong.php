@@ -1,6 +1,8 @@
 <?php 
     session_start();
     include "server.php";
+    $result =  getPersen();
+    $_SESSION['potongan'] = $result;
 	if (isset($_GET['logout'])) {
         session_unset();
         session_destroy();
@@ -44,7 +46,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="adminLPub.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="adminPotong.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -72,13 +74,12 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 150px;">
-            <form class="form-potongan" method="POST">
+            <form class="form-potongan" method="POST" action="adminPotong.php">
             <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 360px;height: 300px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
-                <form class="form-topUpPub" method="POST" action="topupPub.php">
-                <input class="form-control-plaintext" type="text" style="text-align:center;" value="Presentasi potongan :" readonly="" style="padding: 30px;">
-                <input name="jumlah" type="text" placeholder="Presentasi Potongan Pembayaran Baru" style="width: 290px;margin: 30px;" />
-                <button name="pay" class="btn btn-primary" type="submit" style="margin: 5px;">Change</button>    
+                <input class="form-control-plaintext" type="text" style="text-align:center;" value="Presentasi potongan : <?php echo $_SESSION['potongan']; ?>" readonly="" style="padding: 30px;">
+                <input name="potongan" type="text" placeholder="Presentasi Potongan Pembayaran Baru" style="width: 290px;margin: 30px;" />
+                <button name="persentasi" class="btn btn-primary" type="submit" style="margin: 5px;">Change</button>    
             </div>
             </form>
         </div>

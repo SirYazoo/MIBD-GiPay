@@ -73,19 +73,18 @@ if(isset($_POST['reg_toko'])){
     $alamatToko = $_POST['alamatToko'];
     $noHp = $_POST['noHp'];
     $email = $_POST['email'];
-
-    if(isset($nama) && $nama != ""){
-        $username = $db->escapeString($username);
-        $password = $db->escapeString($password);
-        $nama = $db->escapeString($nama);
-        $namaToko = $db->escapeString($namaToko);
-        $alamatToko = $db->escapeString($alamatToko);
-        $email = $db->escapeString($email);
-        $query = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo)
-                VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0)";
-        $query_result = $db->executeNonSelectQuery($query);
-        echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
-    }
+    $username = $db->escapeString($username);
+    $password = $db->escapeString($password);
+    $nama = $db->escapeString($nama);
+    $namaToko = $db->escapeString($namaToko);
+    $alamatToko = $db->escapeString($alamatToko);
+    $email = $db->escapeString($email);
+    $date = new DateTime('NOW', timezone_open("Asia/Bangkok"));
+    $tanggal = date_format($date, "Y-m-j");
+    $query = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo, tanggalSignUp)
+              VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0, '$tanggal')";
+    $query_result = $db->executeNonSelectQuery($query);
+    echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
 }
 
 if(isset($_POST['reg_pub'])){
@@ -94,17 +93,16 @@ if(isset($_POST['reg_pub'])){
     $nama = $_POST['nama'];
     $noHp = $_POST['noHp'];
     $email = $_POST['email'];
-
-    if(isset($nama) && $nama != ""){
-        $username = $db->escapeString($username);
-        $password = $db->escapeString($password);
-        $nama = $db->escapeString($nama);
-        $email = $db->escapeString($email);
-        $query = "INSERT INTO penggunapublik(username, password, nama, email, noHp, saldo)
-                VALUES('$username', '$password', '$nama', '$email', '$noHp', 0)";
-        $query_result = $db->executeNonSelectQuery($query);
-        echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
-    }
+    $username = $db->escapeString($username);
+    $password = $db->escapeString($password);
+    $nama = $db->escapeString($nama);
+    $email = $db->escapeString($email);
+    $date = new DateTime('NOW', timezone_open("Asia/Bangkok"));
+    $tanggal = date_format($date, "Y-m-j");
+    $query = "INSERT INTO penggunapublik(username, password, nama, email, noHp, saldo, tanggalSignUp)
+              VALUES('$username', '$password', '$nama', '$email', '$noHp', 0, '$tanggal')";
+    $query_result = $db->executeNonSelectQuery($query);
+    echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
 }
 
 if(isset($_POST['topup'])){
@@ -114,14 +112,10 @@ if(isset($_POST['topup'])){
     $query .= "'".$nama."'";
     $res = $db->executeSelectQuery($query);
     $idUser = $res[0][0];
-
-    if(isset($nama) && $nama != ""){
-        $nama = $db->escapeString($nama);
-        $query2 = "INSERT INTO verifikasi
-                VALUES('$idUser', '$nama', '$jumlah')";
-        $query_result = $db->executeNonSelectQuery($query2);
-    }
-
+    $nama = $db->escapeString($nama);
+    $query2 = "INSERT INTO verifikasi
+               VALUES('$idUser', '$nama', '$jumlah')";
+    $query_result = $db->executeNonSelectQuery($query2);
     echo "<script type='text/javascript'>alert('Topup berhasil');</script>";
 }
 
@@ -201,7 +195,7 @@ function getPenToko($uname){
 
 function getListPub(){
     $db = new MySQLDB('localhost', 'root', '', 'gipay');
-    $query = "SELECT * FROM penggunapublik";
+    $query = "SELECT idUser, username, password, nama, email, noHp, saldo FROM penggunapublik";
     $res = $db->executeSelectQuery($query);
     return $res;
 }
@@ -217,6 +211,14 @@ function getListVer(){
     $db = new MySQLDB('localhost', 'root', '', 'gipay');
     $query = "SELECT * FROM verifikasi";
     $res = $db->executeSelectQuery($query);
+    return $res;
+}
+
+function getPersen(){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $query = "SELECT * FROM persentasipotongan";
+    $query_result = $db->executeSelectQuery($query);
+    $res = $query_result[0][0];
     return $res;
 }
 
@@ -283,11 +285,16 @@ if(isset($_POST['konfir_pay'])){
         $query4 = "SELECT saldo FROM pemiliktoko WHERE idUser=$idToko";
         $res4 = $db->executeSelectQuery($query4);
         $saldoToko = $res4[0][0];
-        $upSaldo2 = $saldoToko + $jumlah;
-        $query5 = "UPDATE pemiliktoko
+        $query5 = "SELECT * FROM persentasipotongan";
+        $res5 = $db->executeSelectQuery($query5);
+        $potongan = $res5[0][0];
+        $persen = 100 - $potongan;
+        $temp = $jumlah * $persen / 100;
+        $upSaldo2 = $saldoToko + $temp;
+        $query6 = "UPDATE pemiliktoko
                    SET saldo = $upSaldo2
                    WHERE idUser = $idToko";
-        $res5 = $db->executeNonSelectQuery($query5);
+        $res6 = $db->executeNonSelectQuery($query6);
         echo "<script type='text/javascript'>alert('Pembayaran berhasil');window.location.href='payPub.php';</script>";
     }
 }
@@ -364,8 +371,8 @@ if(isset($_POST['verifikasi'])){
 }
 
 if(isset($_POST['persentasi'])){
-    $persentasi = $_POST['persentasi'];
-    $query = "UPDATE persentasi
+    $persentasi = $_POST['potongan'];
+    $query = "UPDATE persentasipotongan
               SET persentasi = $persentasi";
     $res = $db->executeNonSelectQuery($query);
 }
