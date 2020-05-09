@@ -318,4 +318,18 @@ if(isset($_POST['tarik_dana'])){
         $res3 = $db->executeNonSelectQuery($query3);
     }
 }
+
+if(isset($_POST['delete_pub'])){
+    $idUser = $_POST['idUser'];
+    $query = "DELETE FROM penggunapublik
+              WHERE idUser = $idUser";
+    $query_result = $db->executeNonSelectQuery($query);
+}
+
+if(isset($_POST['delete_toko'])){
+    $idUser = $_POST['idUser'];
+    $query = "DELETE FROM pemiliktoko
+              WHERE idUser = $idUser";
+    $query_result = $db->executeNonSelectQuery($query);
+}
 ?>

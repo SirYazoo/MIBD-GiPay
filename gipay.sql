@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 09:13 AM
+-- Generation Time: May 09, 2020 at 09:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -277,26 +277,26 @@ ALTER TABLE `penggunapublik`
 -- Constraints for table `historypenarikan`
 --
 ALTER TABLE `historypenarikan`
-  ADD CONSTRAINT `FK_idToko` FOREIGN KEY (`idToko`) REFERENCES `pemiliktoko` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_idToko` FOREIGN KEY (`idToko`) REFERENCES `pemiliktoko` (`idUser`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `historytopup`
 --
 ALTER TABLE `historytopup`
-  ADD CONSTRAINT `FK_idUserTop` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_idUserTop` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `historytransaksi`
 --
 ALTER TABLE `historytransaksi`
-  ADD CONSTRAINT `FK_idTokoBay` FOREIGN KEY (`idToko`) REFERENCES `pemiliktoko` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_idUserBayar` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_idTokoBay` FOREIGN KEY (`idToko`) REFERENCES `pemiliktoko` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_idUserBayar` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `verifikasi`
 --
 ALTER TABLE `verifikasi`
-  ADD CONSTRAINT `FK_idUserVer` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_idUserVer` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
