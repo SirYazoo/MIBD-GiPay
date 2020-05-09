@@ -73,12 +73,12 @@
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 150px;">
             <form class="form-potongan" method="POST">
-            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 360px;height: 340px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
+            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 360px;height: 300px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                 <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
-                <input name="idToko" type="text" placeholder="Id merchant" style="width: 290px;margin: 5px;" />
-                <input name="jumlah" type="text" placeholder="Presentase Potongan Pembayaran Baru" style="width: 290px;margin: 30px;" />
-                <input name="password" type="password" placeholder="Password" style="width: 290px;" />
-                <button name="pay" class="btn btn-primary" type="submit" style="margin: 25px;">Change</button>    
+                <form class="form-topUpPub" method="POST" action="topupPub.php">
+                <input class="form-control-plaintext" type="text" style="text-align:center;" value="Presentasi potongan :" readonly="" style="padding: 30px;">
+                <input name="jumlah" type="text" placeholder="Presentasi Potongan Pembayaran Baru" style="width: 290px;margin: 30px;" />
+                <button name="pay" class="btn btn-primary" type="submit" style="margin: 5px;">Change</button>    
             </div>
             </form>
         </div>
