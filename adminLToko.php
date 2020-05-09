@@ -1,3 +1,13 @@
+<?php 
+    session_start();
+    include "server.php";
+	if (isset($_GET['logout'])) {
+        session_unset();
+        session_destroy();
+		header("Location: index.php");
+	}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -34,7 +44,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="index.html" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="adminLToko.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -71,17 +81,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>rio</td>
-                <td>rio</td>
-                <td>rio</td>
-                <td>rio</td>
-                <td>rio</td>
-                <td>rio</td>
-                <td>rio</td>
-                <td>rio</td>
-                <td>rio</td>
-            </tr>
+            <?php
+            $result = getListToko();
+            foreach($result as $row) {
+                echo '<tr>';
+                foreach($row as $cell){
+                    echo('<td>' . $cell . '</td>');
+                }
+                echo '</tr>';
+			}
+            ?>
         </tbody>
     </table>
     <script src="assets/js/jquery.min.js"></script>

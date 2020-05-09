@@ -197,6 +197,20 @@ function getPenToko($uname){
     return $res;
 }
 
+function getListPub(){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $query = "SELECT * FROM penggunapublik";
+    $res = $db->executeSelectQuery($query);
+    return $res;
+}
+
+function getListToko(){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $query = "SELECT * FROM pemiliktoko";
+    $res = $db->executeSelectQuery($query);
+    return $res;
+}
+
 if(isset($_POST['pay'])){
     if(empty($_POST['idToko']) || empty($_POST['jumlah']) || empty($_POST['password'])){
         echo "<script type='text/javascript'>alert('Harap isi form dengan lengkap');window.location.href='payPub.php';</script>";
