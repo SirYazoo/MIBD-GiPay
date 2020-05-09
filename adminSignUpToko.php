@@ -66,17 +66,20 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><form class="form-blokPub" action="adminLPub.php" method="POST"><input type="text" style="margin-right: 8px;"><button name="deleteLPub" class="btn btn-primary" type="submit">Delete</button></form></div>
-    </nav><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="height: 40px;background-color: #ffffff;"></div>
+        </div>
+    </div>
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>idUser</th>
-                <th>Username</th>
-                <th>Password</th>
                 <th>Nama</th>
-                <th>Email</th>
-                <th>No HP</th>
-                <th>Saldo</th>
+                <th>Tanggal SignUp</th>
             </tr>
         </thead>
         <tbody>

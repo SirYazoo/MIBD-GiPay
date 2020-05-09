@@ -53,8 +53,9 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                </ul><a href="adminLPub.php" style="color: rgb(0,0,0);width: 210px;">&nbsp;List Pengguna Publik</a><a href="adminLToko.php" style="color: rgb(0,0,0);width: 169px;">List Pemilik Toko</a><a href="" style="color: rgb(0,0,0);width: 180px;">Verifikasi TopUp</a><a href=""
-                    style="color: rgb(0,0,0);width: 215px;">Presentase Potongan</a><a href="" style="color: rgb(0,0,0);">Statistik SignUp</a></div>
+                </ul><a href="adminLPub.php" style="color: rgb(0,0,0);width: 210px;">&nbsp;List Pengguna Publik</a><a href="adminLToko.php" style="color: rgb(0,0,0);width: 169px;">List Pemilik Toko</a><a href="adminVerif.php" style="color: rgb(0,0,0);width: 180px;">Verifikasi TopUp</a><a href="adminPotong.php"
+                    style="color: rgb(0,0,0);width: 215px;">Presentase Potongan</a><a href="adminSignUpPub.php" style="color: rgb(0,0,0);width: 200px;">Data SignUp Publik</a><a href="adminSignUpToko.php" style="color: rgb(0,0,0);">Data SignUp Pemilik Toko</a>
+                </div>
         </div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md" style="background-color: #ffffff;">
@@ -65,7 +66,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><form class="form-blokPub" action="" method="POST"><input type="text" style="margin-right: 8px;"><a href="" class="btn btn-primary" role="button">Delete</a></form></div>
+            </div><form class="form-blokPub" action="" method="POST"><input type="text" style="margin-right: 8px;"><button name="deleteLToko" class="btn btn-primary" type="submit">Delete</button></form></div>
     </nav><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -81,7 +82,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php
+            <!-- <?php
             $result = getListToko();
             foreach($result as $row) {
                 echo '<tr>';
@@ -90,7 +91,7 @@
                 }
                 echo '</tr>';
 			}
-            ?>
+            ?> -->
         </tbody>
     </table>
     <script src="assets/js/jquery.min.js"></script>

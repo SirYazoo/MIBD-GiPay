@@ -66,32 +66,23 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><form class="form-blokPub" action="adminLPub.php" method="POST"><input type="text" style="margin-right: 8px;"><button name="deleteLPub" class="btn btn-primary" type="submit">Delete</button></form></div>
-    </nav><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>idUser</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Nama</th>
-                <th>Email</th>
-                <th>No HP</th>
-                <th>Saldo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- <?php
-            $result = getListPub();
-            foreach($result as $row) {
-                echo '<tr>';
-                foreach($row as $cell){
-                    echo('<td>' . $cell . '</td>');
-                }
-                echo '</tr>';
-			}
-            ?> -->
-        </tbody>
-    </table>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="margin-top: 150px;">
+            <form class="form-potongan" method="POST">
+            <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 360px;height: 340px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
+                <div><img class="rounded-circle" src="assets/img/Logo.png" width="85px" height="100px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
+                <input name="idToko" type="text" placeholder="Id merchant" style="width: 290px;margin: 5px;" />
+                <input name="jumlah" type="text" placeholder="Presentase Potongan Pembayaran Baru" style="width: 290px;margin: 30px;" />
+                <input name="password" type="password" placeholder="Password" style="width: 290px;" />
+                <button name="pay" class="btn btn-primary" type="submit" style="margin: 25px;">Change</button>    
+            </div>
+            </form>
+        </div>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>

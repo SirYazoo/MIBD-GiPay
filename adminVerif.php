@@ -44,7 +44,7 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="adminLPub.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
+            </div><input class="form-control-plaintext" type="text" value="Welcome, <?php echo $_SESSION['username']; ?>" readonly="" style="width: 205px;font-size: 18px;"><a href="adminLToko.php?logout='1'" class="btn btn-primary" role="button">Sign Out</a></div>
     </nav>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-2"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -66,22 +66,18 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                 </ul>
-            </div><form class="form-blokPub" action="adminLPub.php" method="POST"><input type="text" style="margin-right: 8px;"><button name="deleteLPub" class="btn btn-primary" type="submit">Delete</button></form></div>
+            </div><form class="form-blokPub" action="" method="POST"><input type="text" style="margin-right: 8px;"><button name="adminVerif" class="btn btn-primary" type="submit">Accept</button></form></div>
     </nav><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>idUser</th>
-                <th>Username</th>
-                <th>Password</th>
                 <th>Nama</th>
-                <th>Email</th>
-                <th>No HP</th>
-                <th>Saldo</th>
+                <th>Jumlah</th>
             </tr>
         </thead>
         <tbody>
             <!-- <?php
-            $result = getListPub();
+            $result = getListToko();
             foreach($result as $row) {
                 echo '<tr>';
                 foreach($row as $cell){
