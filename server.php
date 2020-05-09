@@ -362,4 +362,11 @@ if(isset($_POST['verifikasi'])){
                LIMIT 1";
     $res4 = $db->executeNonSelectQuery($query4);
 }
+
+if(isset($_POST['persentasi'])){
+    $persentasi = $_POST['persentasi'];
+    $query = "UPDATE persentasi
+              SET persentasi = $persentasi";
+    $res = $db->executeNonSelectQuery($query);
+}
 ?>
