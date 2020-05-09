@@ -83,8 +83,8 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <?php
-            $result = getListPub();
+            <?php
+            $result = getSignPub();
             foreach($result as $row) {
                 echo '<tr>';
                 foreach($row as $cell){
@@ -92,7 +92,7 @@
                 }
                 echo '</tr>';
 			}
-            ?> -->
+            ?>
         </tbody>
     </table>
     <script src="assets/js/jquery.min.js"></script>

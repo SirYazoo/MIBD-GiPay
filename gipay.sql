@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 06:54 PM
+-- Generation Time: May 09, 2020 at 10:12 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -91,8 +91,8 @@ INSERT INTO `historytopup` (`idTopup`, `jumlah`, `tanggal`, `idUser`) VALUES
 --
 
 CREATE TABLE `historytransaksi` (
-  `idUser` int(11) NOT NULL,
-  `idToko` int(11) NOT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  `idToko` int(11) DEFAULT NULL,
   `jumlah` float NOT NULL,
   `tanggal` date NOT NULL,
   `waktu` time NOT NULL
@@ -103,11 +103,11 @@ CREATE TABLE `historytransaksi` (
 --
 
 INSERT INTO `historytransaksi` (`idUser`, `idToko`, `jumlah`, `tanggal`, `waktu`) VALUES
-(4, 1, 25000, '0000-00-00', '12:33:30'),
-(4, 1, 1000, '2020-05-08', '12:52:55'),
-(4, 1, 1000, '2020-05-08', '12:54:02'),
-(4, 1, 2000, '2020-05-08', '12:54:41'),
-(4, 1, 3000, '2020-05-08', '18:17:06'),
+(4, NULL, 25000, '0000-00-00', '12:33:30'),
+(4, NULL, 1000, '2020-05-08', '12:52:55'),
+(4, NULL, 1000, '2020-05-08', '12:54:02'),
+(4, NULL, 2000, '2020-05-08', '12:54:41'),
+(4, NULL, 3000, '2020-05-08', '18:17:06'),
 (5, 2, 5600, '2020-05-08', '19:59:36'),
 (5, 2, 25000, '2020-05-08', '20:20:36'),
 (4, 2, 1000, '2020-05-09', '13:23:51'),
@@ -124,6 +124,17 @@ CREATE TABLE `kota` (
   `namaKota` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `kota`
+--
+
+INSERT INTO `kota` (`idKota`, `namaKota`) VALUES
+(1, 'CILEGON'),
+(2, 'LEBAK'),
+(3, 'PANDEGLANG'),
+(4, 'SERANG'),
+(5, 'TANGERANG');
+
 -- --------------------------------------------------------
 
 --
@@ -139,16 +150,21 @@ CREATE TABLE `pemiliktoko` (
   `alamatToko` varchar(150) NOT NULL,
   `email` varchar(50) NOT NULL,
   `noHp` int(12) NOT NULL,
-  `saldo` float NOT NULL
+  `saldo` float NOT NULL,
+  `tanggalSignUp` date NOT NULL,
+  `idKota` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pemiliktoko`
 --
 
-INSERT INTO `pemiliktoko` (`idUser`, `username`, `password`, `nama`, `namaToko`, `alamatToko`, `email`, `noHp`, `saldo`) VALUES
-(1, 'toko', 'toko', 'roi', 'muksinah', 'roi', 'test@g', 9, 264),
-(2, 'toko2', 'toko', 'doi', 'doi', 'doi', 'test@g', 8, 24995);
+INSERT INTO `pemiliktoko` (`idUser`, `username`, `password`, `nama`, `namaToko`, `alamatToko`, `email`, `noHp`, `saldo`, `tanggalSignUp`, `idKota`) VALUES
+(2, 'toko2', 'toko', 'doi', 'doi', 'doi', 'test@g', 8, 24995, '2020-05-08', 1),
+(3, 'toko3', 'toko', 'rio', 'tokorio', 'jalan toko3', 'toko3@g', 63, 0, '2020-05-10', 1),
+(4, 'toko4', 'toko', 'toko4', 'toko4', 'toko4', 'test@g', 21, 0, '2020-05-10', 1),
+(5, 'toko5', 'toko', 'toko5', 'toko5', 'toko5', 'test@g', 22, 0, '2020-05-10', 2),
+(6, 'toko6', 'toko', 'a', 'a', 'a', 'test@g', 2, 0, '2020-05-10', 3);
 
 -- --------------------------------------------------------
 
@@ -240,8 +256,8 @@ ALTER TABLE `historytopup`
 -- Indexes for table `historytransaksi`
 --
 ALTER TABLE `historytransaksi`
-  ADD KEY `FK_idTokoBay` (`idToko`),
-  ADD KEY `FK_idUserBayar` (`idUser`);
+  ADD KEY `FK_idUserTran` (`idUser`),
+  ADD KEY `FK_idTokoTran` (`idToko`);
 
 --
 -- Indexes for table `kota`
@@ -254,7 +270,8 @@ ALTER TABLE `kota`
 --
 ALTER TABLE `pemiliktoko`
   ADD PRIMARY KEY (`idUser`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `FK_idKota` (`idKota`);
 
 --
 -- Indexes for table `penggunapublik`
@@ -295,13 +312,13 @@ ALTER TABLE `historytopup`
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pemiliktoko`
 --
 ALTER TABLE `pemiliktoko`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `penggunapublik`
@@ -329,8 +346,14 @@ ALTER TABLE `historytopup`
 -- Constraints for table `historytransaksi`
 --
 ALTER TABLE `historytransaksi`
-  ADD CONSTRAINT `FK_idTokoBay` FOREIGN KEY (`idToko`) REFERENCES `pemiliktoko` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_idUserBayar` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `FK_idTokoTran` FOREIGN KEY (`idToko`) REFERENCES `pemiliktoko` (`idUser`) ON DELETE SET NULL,
+  ADD CONSTRAINT `FK_idUserTran` FOREIGN KEY (`idUser`) REFERENCES `penggunapublik` (`idUser`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `pemiliktoko`
+--
+ALTER TABLE `pemiliktoko`
+  ADD CONSTRAINT `FK_idKota` FOREIGN KEY (`idKota`) REFERENCES `kota` (`idKota`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `verifikasi`

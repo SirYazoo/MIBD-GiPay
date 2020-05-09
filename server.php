@@ -71,6 +71,7 @@ if(isset($_POST['reg_toko'])){
     $nama = $_POST['nama'];
     $namaToko = $_POST['namaToko'];
     $alamatToko = $_POST['alamatToko'];
+    $kota = $_POST['kota'];
     $noHp = $_POST['noHp'];
     $email = $_POST['email'];
     $username = $db->escapeString($username);
@@ -81,9 +82,24 @@ if(isset($_POST['reg_toko'])){
     $email = $db->escapeString($email);
     $date = new DateTime('NOW', timezone_open("Asia/Bangkok"));
     $tanggal = date_format($date, "Y-m-j");
-    $query = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo, tanggalSignUp)
-              VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0, '$tanggal')";
-    $query_result = $db->executeNonSelectQuery($query);
+    $query = "SELECT idKota FROM kota WHERE namaKota=";
+    $query .= "'".$kota."'";
+    $res = $db->executeSelectQuery($query);
+    if(count($res) == 0){
+        $query2 = "INSERT INTO Kota(namaKota)
+                   VALUES('$kota')";
+        $res2 = $db->executeNonSelectQuery($query2);
+        $query3 = "SELECT idKota FROM kota WHERE namaKota=";
+        $query3 .= "'".$kota."'";
+        $res3 = $db->executeSelectQuery($query3);
+        $idKota = $res3[0][0];
+    }
+    else{
+        $idKota = $res[0][0];
+    }
+    $query4 = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo, tanggalSignUp, idKota)
+              VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0, '$tanggal', '$idKota')";
+    $query_result = $db->executeNonSelectQuery($query4);
     echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
 }
 
@@ -202,7 +218,7 @@ function getListPub(){
 
 function getListToko(){
     $db = new MySQLDB('localhost', 'root', '', 'gipay');
-    $query = "SELECT * FROM pemiliktoko";
+    $query = "SELECT idUser, username, password, nama, namaToko, alamatToko, email, noHp, saldo FROM pemiliktoko";
     $res = $db->executeSelectQuery($query);
     return $res;
 }
@@ -219,6 +235,20 @@ function getPersen(){
     $query = "SELECT * FROM persentasipotongan";
     $query_result = $db->executeSelectQuery($query);
     $res = $query_result[0][0];
+    return $res;
+}
+
+function getSignPub(){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $query = "SELECT idUser, nama, tanggalSignUp FROM penggunapublik";
+    $res = $db->executeSelectQuery($query);
+    return $res;
+}
+
+function getSignToko(){
+    $db = new MySQLDB('localhost', 'root', '', 'gipay');
+    $query = "SELECT idUser, nama, tanggalSignUp FROM pemiliktoko";
+    $res = $db->executeSelectQuery($query);
     return $res;
 }
 
