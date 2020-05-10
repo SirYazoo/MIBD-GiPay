@@ -59,6 +59,10 @@ if(isset($_POST['login_user'])){
             $_SESSION['email'] = $res[0][6];
             $_SESSION['namaToko'] = $res[0][4];
             $_SESSION['alamatToko'] = $res[0][5];
+            $idKota = $res[0][10];
+            $query4 = "SELECT namaKota FROM kota WHERE idKota=$idKota";
+            $res4 = $db->executeSelectQuery($query4);
+            $_SESSION['kota'] = $res4[0][0];
         session_write_close();
         header('Location: profToko.php');
     }
@@ -100,7 +104,7 @@ if(isset($_POST['reg_toko'])){
     $query4 = "INSERT INTO pemiliktoko(username, password, nama, namaToko, alamatToko, email, noHp, saldo, tanggalSignUp, idKota)
               VALUES('$username', '$password', '$nama', '$namaToko', '$alamatToko', '$email', '$noHp', 0, '$tanggal', '$idKota')";
     $query_result = $db->executeNonSelectQuery($query4);
-    echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
+    echo "<script type='text/javascript'>alert('Register berhasil! Silahkan login');window.location.href='index.php';</script>";
 }
 
 if(isset($_POST['reg_pub'])){
@@ -118,7 +122,7 @@ if(isset($_POST['reg_pub'])){
     $query = "INSERT INTO penggunapublik(username, password, nama, email, noHp, saldo, tanggalSignUp)
               VALUES('$username', '$password', '$nama', '$email', '$noHp', 0, '$tanggal')";
     $query_result = $db->executeNonSelectQuery($query);
-    echo "<script type='text/javascript'>alert('Register berhasil');window.location.href='index.php';</script>";
+    echo "<script type='text/javascript'>alert('Register berhasil! Silahkan login');window.location.href='index.php';</script>";
 }
 
 if(isset($_POST['topup'])){
@@ -132,7 +136,7 @@ if(isset($_POST['topup'])){
     $query2 = "INSERT INTO verifikasi
                VALUES('$idUser', '$nama', '$jumlah')";
     $query_result = $db->executeNonSelectQuery($query2);
-    echo "<script type='text/javascript'>alert('Topup berhasil');</script>";
+    echo "<script type='text/javascript'>alert('Topup request berhasil');</script>";
 }
 
 function upSaldoPub($uname){

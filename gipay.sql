@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 10:12 PM
+-- Generation Time: May 10, 2020 at 11:37 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -54,14 +54,6 @@ CREATE TABLE `historypenarikan` (
   `idToko` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `historypenarikan`
---
-
-INSERT INTO `historypenarikan` (`idPenarikan`, `noRekening`, `jumlah`, `tanggal`, `idToko`) VALUES
-(1, 243, 1000, '2020-05-09', 2),
-(2, 234, 1000, '2020-05-09', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -74,15 +66,6 @@ CREATE TABLE `historytopup` (
   `tanggal` datetime NOT NULL,
   `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `historytopup`
---
-
-INSERT INTO `historytopup` (`idTopup`, `jumlah`, `tanggal`, `idUser`) VALUES
-(1, 20000, '2020-05-07 18:28:56', 4),
-(2, 30000, '2020-05-07 18:29:54', 4),
-(3, 50000, '2020-05-07 18:30:18', 5);
 
 -- --------------------------------------------------------
 
@@ -98,21 +81,6 @@ CREATE TABLE `historytransaksi` (
   `waktu` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `historytransaksi`
---
-
-INSERT INTO `historytransaksi` (`idUser`, `idToko`, `jumlah`, `tanggal`, `waktu`) VALUES
-(4, NULL, 25000, '0000-00-00', '12:33:30'),
-(4, NULL, 1000, '2020-05-08', '12:52:55'),
-(4, NULL, 1000, '2020-05-08', '12:54:02'),
-(4, NULL, 2000, '2020-05-08', '12:54:41'),
-(4, NULL, 3000, '2020-05-08', '18:17:06'),
-(5, 2, 5600, '2020-05-08', '19:59:36'),
-(5, 2, 25000, '2020-05-08', '20:20:36'),
-(4, 2, 1000, '2020-05-09', '13:23:51'),
-(4, 2, 1000, '2020-05-09', '23:47:41');
-
 -- --------------------------------------------------------
 
 --
@@ -123,17 +91,6 @@ CREATE TABLE `kota` (
   `idKota` int(11) NOT NULL,
   `namaKota` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `kota`
---
-
-INSERT INTO `kota` (`idKota`, `namaKota`) VALUES
-(1, 'CILEGON'),
-(2, 'LEBAK'),
-(3, 'PANDEGLANG'),
-(4, 'SERANG'),
-(5, 'TANGERANG');
 
 -- --------------------------------------------------------
 
@@ -155,17 +112,6 @@ CREATE TABLE `pemiliktoko` (
   `idKota` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `pemiliktoko`
---
-
-INSERT INTO `pemiliktoko` (`idUser`, `username`, `password`, `nama`, `namaToko`, `alamatToko`, `email`, `noHp`, `saldo`, `tanggalSignUp`, `idKota`) VALUES
-(2, 'toko2', 'toko', 'doi', 'doi', 'doi', 'test@g', 8, 24995, '2020-05-08', 1),
-(3, 'toko3', 'toko', 'rio', 'tokorio', 'jalan toko3', 'toko3@g', 63, 0, '2020-05-10', 1),
-(4, 'toko4', 'toko', 'toko4', 'toko4', 'toko4', 'test@g', 21, 0, '2020-05-10', 1),
-(5, 'toko5', 'toko', 'toko5', 'toko5', 'toko5', 'test@g', 22, 0, '2020-05-10', 2),
-(6, 'toko6', 'toko', 'a', 'a', 'a', 'test@g', 2, 0, '2020-05-10', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -182,14 +128,6 @@ CREATE TABLE `penggunapublik` (
   `saldo` float NOT NULL,
   `tanggalSignUp` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `penggunapublik`
---
-
-INSERT INTO `penggunapublik` (`idUser`, `username`, `password`, `nama`, `email`, `noHp`, `saldo`, `tanggalSignUp`) VALUES
-(4, 'test', 'test', 'antares', 'test@g', 21, 67000, '2020-05-07'),
-(5, 'test2', 'test', 'doi', 'doi@g', 7, 69400, '2020-05-08');
 
 -- --------------------------------------------------------
 
@@ -218,14 +156,6 @@ CREATE TABLE `verifikasi` (
   `idUser` int(11) NOT NULL,
   `jumlah` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `verifikasi`
---
-
-INSERT INTO `verifikasi` (`idUser`, `jumlah`) VALUES
-(4, 5600),
-(4, 25000);
 
 --
 -- Indexes for dumped tables
@@ -300,31 +230,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `historypenarikan`
 --
 ALTER TABLE `historypenarikan`
-  MODIFY `idPenarikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPenarikan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `historytopup`
 --
 ALTER TABLE `historytopup`
-  MODIFY `idTopup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTopup` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idKota` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pemiliktoko`
 --
 ALTER TABLE `pemiliktoko`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `penggunapublik`
 --
 ALTER TABLE `penggunapublik`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
