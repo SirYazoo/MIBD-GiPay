@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="margin-top: 150px;">
-                    <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 350px;height: 400px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
+                    <div class="text-center border rounded-0 shadow-sm profile-box" style="width: 500px;height: 440px;background-color: #ffffff;margin: auto;margin-top: auto;margin-bottom: auto;">
                         <div><img class="rounded-circle" src="assets/img/Toko.png" width="130px" height="130px" style="background-color: rgb(255,255,255);padding: 2px;margin-top: auto;"></div>
                         <div style="height: 80px;">
                             <h4><?php echo $_SESSION['nama']; ?></h4>
