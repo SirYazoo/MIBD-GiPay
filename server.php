@@ -128,13 +128,13 @@ if(isset($_POST['reg_pub'])){
 if(isset($_POST['topup'])){
     $jumlah = $_POST['jumlah'];
     $nama = $_SESSION['nama'];
+    $nama = $db->escapeString($nama);
     $query = "SELECT idUser FROM penggunapublik WHERE nama=";
     $query .= "'".$nama."'";
     $res = $db->executeSelectQuery($query);
     $idUser = $res[0][0];
-    $nama = $db->escapeString($nama);
     $query2 = "INSERT INTO verifikasi
-               VALUES('$idUser', '$nama', '$jumlah')";
+               VALUES('$idUser', '$jumlah')";
     $query_result = $db->executeNonSelectQuery($query2);
     echo "<script type='text/javascript'>alert('Topup request berhasil');</script>";
 }
@@ -197,6 +197,10 @@ function getTransToko($uname){
     $idUser = $query_result[0][0];
     $query2 = "SELECT jumlah, tanggal, waktu FROM historytransaksi WHERE idToko = $idUser";
     $res = $db->executeSelectQuery($query2);
+    $query3 = "SELECT * FROM persentasipotongan";
+    $res2 = $db->executeSelectQuery($query3);
+    $potongan = $res2[0][0];
+    $_SESSION['potongan'] = $potongan;
     return $res;
 }
 
@@ -261,8 +265,14 @@ if(isset($_POST['pay'])){
         echo "<script type='text/javascript'>alert('Harap isi form dengan lengkap');window.location.href='payPub.php';</script>";
     }
     else{
+        $username = $_SESSION['username'];
+        $username = $db->escapeString($username);
+        $query = "SELECT idUser FROM penggunapublik WHERE username=";
+        $query .= "'".$username."'";
+        $res = $db->executeSelectQuery($query);
+        $idUser = $res[0][0];
         $password = $_POST['password'];
-        $query = "SELECT * FROM penggunapublik WHERE password=";
+        $query = "SELECT * FROM penggunapublik WHERE idUser=$idUser AND password=";
         $query .= "'".$password."'";
         $query_result = $db->executeSelectQuery($query);
         if(count($query_result) != 0){
@@ -375,6 +385,7 @@ if(isset($_POST['delete_pub'])){
     $query = "DELETE FROM penggunapublik
               WHERE idUser = $idUser";
     $query_result = $db->executeNonSelectQuery($query);
+    echo "<script type='text/javascript'>alert('User telah dihapus');window.location.href='adminLPub.php';</script>";
 }
 
 if(isset($_POST['delete_toko'])){
@@ -382,6 +393,7 @@ if(isset($_POST['delete_toko'])){
     $query = "DELETE FROM pemiliktoko
               WHERE idUser = $idUser";
     $query_result = $db->executeNonSelectQuery($query);
+    echo "<script type='text/javascript'>alert('User telah dihapus');window.location.href='adminLToko.php';</script>";
 }
 
 if(isset($_POST['verifikasi'])){
@@ -398,10 +410,16 @@ if(isset($_POST['verifikasi'])){
                SET saldo = $newSaldo
                WHERE idUser = $idUser";
     $res3 = $db->executeNonSelectQuery($query3);
-    $query4 = "DELETE FROM verifikasi
+    $date = new DateTime('NOW', timezone_open("Asia/Bangkok"));
+    $tanggal = date_format($date, "Y-m-j H:i:s");
+    $query4 = "INSERT INTO historytopup(jumlah, tanggal, idUser)
+               VALUES('$jumlah', '$tanggal', '$idUserVer')";
+    $res4 = $db->executeNonSelectQuery($query4);
+    $query5 = "DELETE FROM verifikasi
                WHERE idUser = $idUserVer AND jumlah = $jumlah
                LIMIT 1";
-    $res4 = $db->executeNonSelectQuery($query4);
+    $res5 = $db->executeNonSelectQuery($query5);
+    echo "<script type='text/javascript'>alert('Verifikasi berhasil');window.location.href='adminVerif.php';</script>";
 }
 
 if(isset($_POST['persentasi'])){
@@ -409,5 +427,6 @@ if(isset($_POST['persentasi'])){
     $query = "UPDATE persentasipotongan
               SET persentasi = $persentasi";
     $res = $db->executeNonSelectQuery($query);
+    echo "<script type='text/javascript'>alert('Update berhasil');window.location.href='adminPotong.php';</script>";
 }
 ?>

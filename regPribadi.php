@@ -51,7 +51,7 @@
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="noHP-input-field">No HP</label></div>
-            <div class="col-sm-6 input-column"><input name="noHp" class="form-control" type="tel" required/></div>
+            <div class="col-sm-6 input-column"><input name="noHp" class="form-control" type="tel" maxlength="12" required/></div>
         </div>
         <div class="form-row form-group">
             <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Email</label></div>

@@ -75,13 +75,19 @@
             <?php
             $username = $_SESSION['username'];
             $result = getTransToko($username);
-            foreach($result as $row) {
+            foreach($result as $value) {
+                $jumlah = $value[0];
+                $tanggal = $value[1];
+                $waktu = $value[2];
+                $potong = $_SESSION['potongan'];
+                $persen = 100 - $potong;
+                $newJumlah = $jumlah * $persen / 100;
                 echo '<tr>';
-                foreach($row as $cell){
-                    echo('<td>' . $cell . '</td>');
-                }
+                echo '<td>' . $newJumlah . '</td>';
+                echo '<td>' . $tanggal . '</td>';
+                echo '<td>' . $waktu . '</td>';
                 echo '</tr>';
-			}
+            }
             ?>
         </tbody>
     </table>

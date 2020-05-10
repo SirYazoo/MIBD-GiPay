@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 11:37 AM
+-- Generation Time: May 10, 2020 at 12:49 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -48,7 +48,7 @@ INSERT INTO `admin` (`idAdmin`, `username`, `password`) VALUES
 
 CREATE TABLE `historypenarikan` (
   `idPenarikan` int(11) NOT NULL,
-  `noRekening` int(30) NOT NULL,
+  `noRekening` varchar(30) NOT NULL,
   `jumlah` float NOT NULL,
   `tanggal` date NOT NULL,
   `idToko` int(11) NOT NULL
@@ -106,7 +106,7 @@ CREATE TABLE `pemiliktoko` (
   `namaToko` varchar(50) NOT NULL,
   `alamatToko` varchar(150) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `noHp` int(12) NOT NULL,
+  `noHp` varchar(12) NOT NULL,
   `saldo` float NOT NULL,
   `tanggalSignUp` date NOT NULL,
   `idKota` int(11) NOT NULL
@@ -124,7 +124,7 @@ CREATE TABLE `penggunapublik` (
   `password` varchar(15) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `noHp` int(12) NOT NULL,
+  `noHp` varchar(12) NOT NULL,
   `saldo` float NOT NULL,
   `tanggalSignUp` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -144,7 +144,7 @@ CREATE TABLE `persentasipotongan` (
 --
 
 INSERT INTO `persentasipotongan` (`persentasi`) VALUES
-(0.5);
+(0.6);
 
 -- --------------------------------------------------------
 
